@@ -69,9 +69,6 @@ const Cart = () => {
                                 />
                                 <div className="cart-item-details">
                                     <h4>{item.product.name}</h4>
-                                    <p className="cart-item-variant">
-                                        {item.variant.options?.map(opt => opt.value).join(' / ')}
-                                    </p>
                                     <p className="cart-item-price">
                                         ${parseFloat(item.variant.retail_price).toFixed(2)}
                                     </p>
