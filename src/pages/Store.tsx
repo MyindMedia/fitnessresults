@@ -31,11 +31,26 @@ const Store = () => {
 
     const categories = ['All', 'Apparel', 'Accessories', 'Home & Living']
 
+    const getProductCategory = (name: string) => {
+        const lowerName = name.toLowerCase()
+        if (['tumbler', 'mug', 'bottle'].some(kw => lowerName.includes(kw))) return 'Home & Living'
+        if (['bag', 'tote', 'cap', 'hat', 'beanie', 'pet'].some(kw => lowerName.includes(kw))) return 'Accessories'
+        return 'Apparel'
+    }
+
     const filteredProducts = products.filter((product) => {
-        const matchesCategory = selectedCategory === 'All' ||
-            product.name.toLowerCase().includes(selectedCategory.toLowerCase())
+        const category = getProductCategory(product.name)
+        const matchesCategory = selectedCategory === 'All' || category === selectedCategory
         const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase())
         return matchesCategory && matchesSearch
+    }).sort((a, b) => {
+        const catA = getProductCategory(a.name)
+        const catB = getProductCategory(b.name)
+        const order = { 'Apparel': 1, 'Accessories': 2, 'Home & Living': 3 }
+        const sortA = order[catA as keyof typeof order] || 4
+        const sortB = order[catB as keyof typeof order] || 4
+        if (sortA !== sortB) return sortA - sortB
+        return a.name.localeCompare(b.name)
     })
 
     return (
