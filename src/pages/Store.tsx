@@ -43,6 +43,9 @@ const Store = () => {
         const matchesCategory = selectedCategory === 'All' || category === selectedCategory
         const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase())
         return matchesCategory && matchesSearch
+    }).filter((product, index, self) => {
+        // Keep only the first product with a given name
+        return index === self.findIndex((p) => p.name === product.name)
     }).sort((a, b) => {
         const catA = getProductCategory(a.name)
         const catB = getProductCategory(b.name)
