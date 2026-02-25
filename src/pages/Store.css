@@ -141,10 +141,11 @@
 }
 
 .product-title {
-    font-size: var(--font-size-lg);
+    font-size: 1.125rem !important;
     font-weight: 600;
     color: var(--color-text);
-    margin-bottom: var(--space-md);
+    margin-bottom: 0;
+    text-align: center;
 }
 
 .product-footer {

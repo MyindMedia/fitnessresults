@@ -1,42 +1,110 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import { printfulAPI } from '../lib/printful'
+import { useCart } from '../context/CartContext'
+import type { PrintfulProductResponse } from '../types/printful'
 import './Product.css'
 
 const Product = () => {
     const { productId } = useParams()
+    const [productData, setProductData] = useState<PrintfulProductResponse | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
     const [quantity, setQuantity] = useState(1)
-    const [selectedSize, setSelectedSize] = useState('M')
+    const [selectedSize, setSelectedSize] = useState('')
     const [addedToCart, setAddedToCart] = useState(false)
+    const { addToCart } = useCart()
 
-    // Placeholder product data - will be replaced with Shopify API
-    const product = {
-        id: productId,
-        title: 'Fitness Results T-Shirt',
-        price: 29.99,
-        description: 'Premium quality cotton t-shirt with our signature logo. Perfect for workouts or casual wear. Breathable, moisture-wicking fabric keeps you comfortable all day long.',
-        images: ['/images/product-tshirt.jpg'],
-        sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-        features: [
-            '100% premium cotton',
-            'Moisture-wicking technology',
-            'Reinforced stitching',
-            'Machine washable',
-            'Unisex fit',
-        ],
-        inStock: true,
-    }
+    useEffect(() => {
+        if (!productId) return
 
-    const relatedProducts = [
-        { id: '2', title: 'Gym Hoodie', price: 54.99 },
-        { id: '3', title: 'Training Shorts', price: 39.99 },
-        { id: '4', title: 'Sports Cap', price: 24.99 },
-    ]
+        const fetchProduct = async () => {
+            try {
+                setLoading(true)
+                const data = await printfulAPI.getProduct(productId)
+                setProductData(data)
+                setError(null)
+            } catch (err) {
+                console.error('Error fetching product:', err)
+                setError('Failed to load product details.')
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchProduct()
+    }, [productId])
 
     const handleAddToCart = () => {
-        console.log('Added to cart:', { productId, quantity, size: selectedSize })
+        if (!productData) return
+
+        let selectedVariant = productData.sync_variants[0]
+
+        if (selectedSize) {
+            const matchingVariant = productData.sync_variants.find(v => {
+                const parts = v.name.split(' / ')
+                if (parts.length >= 3) return parts[2] === selectedSize
+                if (parts.length === 2 && !parts[1].includes('Color')) return parts[1] === selectedSize
+                return false
+            })
+            if (matchingVariant) {
+                selectedVariant = matchingVariant
+            }
+        }
+
+        addToCart(productData.sync_product, selectedVariant, quantity)
         setAddedToCart(true)
         setTimeout(() => setAddedToCart(false), 3000)
     }
+
+    if (loading) {
+        return (
+            <div className="product-page">
+                <section className="section product-section">
+                    <div className="container" style={{ textAlign: 'center', padding: '100px 0' }}>
+                        <div className="spinner"></div>
+                        <p>Loading product details...</p>
+                    </div>
+                </section>
+            </div>
+        )
+    }
+
+    if (error || !productData) {
+        return (
+            <div className="product-page">
+                <section className="section product-section">
+                    <div className="container" style={{ textAlign: 'center', padding: '100px 0' }}>
+                        <h3>{error || 'Product not found'}</h3>
+                        <Link to="/store" className="btn btn-secondary" style={{ marginTop: '20px' }}>
+                            Back to Store
+                        </Link>
+                    </div>
+                </section>
+            </div>
+        )
+    }
+
+    // Extract sizes from variants (assuming format like "Name / Color / Size")
+    const sizeSet = new Set<string>()
+    productData.sync_variants.forEach(variant => {
+        const parts = variant.name.split(' / ')
+        if (parts.length >= 3) {
+            sizeSet.add(parts[2])
+        } else if (parts.length === 2 && !parts[1].includes('Color')) {
+            // Just a guess if there's only 2 parts
+            sizeSet.add(parts[1])
+        }
+    })
+    const sizes = Array.from(sizeSet)
+    if (sizes.length > 0 && !selectedSize) {
+        setSelectedSize(sizes[0])
+    }
+
+    const price = productData.sync_variants.length > 0
+        ? parseFloat(productData.sync_variants[0].retail_price)
+        : 0
 
     return (
         <div className="product-page">
@@ -49,45 +117,45 @@ const Product = () => {
                     <div className="product-grid">
                         <div className="product-images">
                             <div className="main-image">
-                                <div className="image-placeholder">
-                                    <span className="placeholder-text">{product.title}</span>
-                                </div>
+                                <img
+                                    src={productData.sync_product.thumbnail_url}
+                                    alt={productData.sync_product.name}
+                                />
                             </div>
                         </div>
 
                         <div className="product-details">
-                            <h1 className="product-title">{product.title}</h1>
-                            <div className="product-price">${product.price.toFixed(2)}</div>
+                            <h1 className="product-title">{productData.sync_product.name}</h1>
+                            <div className="product-price">${price.toFixed(2)}</div>
 
-                            {product.inStock ? (
-                                <div className="stock-status in-stock">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                    </svg>
-                                    In Stock
-                                </div>
-                            ) : (
-                                <div className="stock-status out-of-stock">Out of Stock</div>
-                            )}
+                            <div className="stock-status in-stock">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                In Stock
+                            </div>
 
-                            <p className="product-description">{product.description}</p>
+                            {/* Printful API doesn't return a description in sync_variants easily without extra catalog calls */}
+                            <p className="product-description"></p>
 
                             <div className="product-options">
-                                <div className="option-group">
-                                    <label className="option-label">Size</label>
-                                    <div className="size-selector">
-                                        {product.sizes.map((size) => (
-                                            <button
-                                                key={size}
-                                                className={`size-btn ${selectedSize === size ? 'active' : ''}`}
-                                                onClick={() => setSelectedSize(size)}
-                                            >
-                                                {size}
-                                            </button>
-                                        ))}
+                                {sizes.length > 0 && (
+                                    <div className="option-group">
+                                        <label className="option-label">Size</label>
+                                        <div className="size-selector">
+                                            {sizes.map((size) => (
+                                                <button
+                                                    key={size}
+                                                    className={`size-btn ${selectedSize === size ? 'active' : ''}`}
+                                                    onClick={() => setSelectedSize(size)}
+                                                >
+                                                    {size}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
 
                                 <div className="option-group">
                                     <label className="option-label">Quantity</label>
@@ -122,48 +190,10 @@ const Product = () => {
                             <button
                                 className="btn btn-primary btn-full btn-lg"
                                 onClick={handleAddToCart}
-                                disabled={!product.inStock}
                             >
-                                {product.inStock ? 'Add to Cart' : 'Out of Stock'}
+                                Add to Cart
                             </button>
-
-                            <div className="product-features">
-                                <h3>Features</h3>
-                                <ul>
-                                    {product.features.map((feature, index) => (
-                                        <li key={index}>
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <polyline points="20 6 9 17 4 12"></polyline>
-                                            </svg>
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="section related-section bg-gradient-radial">
-                <div className="container">
-                    <h2 className="section-title">You May Also Like</h2>
-                    <div className="related-grid">
-                        {relatedProducts.map((relatedProduct) => (
-                            <Link
-                                key={relatedProduct.id}
-                                to={`/store/${relatedProduct.id}`}
-                                className="related-card card-glass"
-                            >
-                                <div className="related-image">
-                                    <div className="image-placeholder">
-                                        <span className="placeholder-text">{relatedProduct.title}</span>
-                                    </div>
-                                </div>
-                                <h4>{relatedProduct.title}</h4>
-                                <div className="related-price">${relatedProduct.price.toFixed(2)}</div>
-                            </Link>
-                        ))}
                     </div>
                 </div>
             </section>

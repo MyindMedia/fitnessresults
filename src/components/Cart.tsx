@@ -1,8 +1,45 @@
+import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import './Cart.css';
 
 const Cart = () => {
     const { items, total, removeFromCart, updateQuantity, closeCart, isCartOpen } = useCart();
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
+
+    const handleCheckout = async () => {
+        setIsCheckingOut(true);
+        try {
+            const checkoutItems = items.map(item => ({
+                name: `${item.product.name} - ${item.variant.name}`,
+                description: item.variant.options?.map(opt => opt.value).join(' / ') || '',
+                images: [item.variant.files?.find(f => f.type === 'preview')?.preview_url || item.variant.files?.[0]?.preview_url || item.product.thumbnail_url],
+                amount: parseFloat(item.variant.retail_price),
+                quantity: item.quantity,
+            }));
+
+            const response = await fetch('/.netlify/functions/create-checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ items: checkoutItems }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error('Checkout error:', data.error);
+                alert('An error occurred during checkout. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error initiating checkout:', error);
+            alert('An error occurred during checkout. Please try again.');
+        } finally {
+            setIsCheckingOut(false);
+        }
+    };
 
     if (!isCartOpen) return null;
 
@@ -26,7 +63,7 @@ const Cart = () => {
                         items.map(item => (
                             <div key={item.id} className="cart-item">
                                 <img
-                                    src={item.variant.files?.[0]?.preview_url || item.product.thumbnail_url}
+                                    src={item.variant.files?.find(f => f.type === 'preview')?.preview_url || item.variant.files?.[0]?.preview_url || item.product.thumbnail_url}
                                     alt={item.variant.name}
                                     className="cart-item-image"
                                 />
@@ -74,8 +111,12 @@ const Cart = () => {
                             <span>Subtotal:</span>
                             <span className="total-amount">${total.toFixed(2)}</span>
                         </div>
-                        <button className="btn btn-primary btn-full checkout-btn">
-                            Proceed to Checkout
+                        <button
+                            className="btn btn-primary btn-full checkout-btn"
+                            onClick={handleCheckout}
+                            disabled={isCheckingOut || items.length === 0}
+                        >
+                            {isCheckingOut ? 'Loading...' : 'Proceed to Checkout'}
                         </button>
                         <button className="btn btn-secondary btn-full" onClick={closeCart}>
                             Continue Shopping

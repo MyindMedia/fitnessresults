@@ -112,16 +112,9 @@ const Store = () => {
                                                 <span className="placeholder-text">{product.name}</span>
                                             </div>
                                         )}
-                                        <div className="product-badge">Apparel</div>
                                     </div>
                                     <div className="product-info">
                                         <h3 className="product-title">{product.name}</h3>
-                                        <div className="product-footer">
-                                            <span className="product-price">View Details</span>
-                                            <button className="quick-view-btn">
-                                                View Details →
-                                            </button>
-                                        </div>
                                     </div>
                                 </Link>
                             ))}

@@ -54,10 +54,14 @@ export interface PrintfulSyncProduct {
     id: number;
     external_id: string;
     name: string;
-    variants: PrintfulVariant[];
     synced: number;
     thumbnail_url: string;
     is_ignored: boolean;
+}
+
+export interface PrintfulProductResponse {
+    sync_product: PrintfulSyncProduct;
+    sync_variants: PrintfulVariant[];
 }
 
 export interface PrintfulApiResponse<T> {
@@ -103,7 +107,7 @@ export interface PrintfulOrderData {
 
 export interface CartItem {
     id: string;
-    product: PrintfulProduct;
+    product: PrintfulSyncProduct;
     variant: PrintfulVariant;
     quantity: number;
 }

@@ -9,6 +9,7 @@ import ScheduleVisit from './pages/ScheduleVisit'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
 import Product from './pages/Product'
+import Success from './pages/Success'
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/store" element={<Store />} />
                         <Route path="/store/:productId" element={<Product />} />
+                        <Route path="/success" element={<Success />} />
                     </Routes>
                 </main>
                 <Footer />

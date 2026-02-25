@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import type { CartItem, PrintfulProduct, PrintfulVariant } from '../types/printful';
+import type { CartItem, PrintfulSyncProduct, PrintfulVariant } from '../types/printful';
 
 interface CartContextType {
     items: CartItem[];
     itemCount: number;
     total: number;
-    addToCart: (product: PrintfulProduct, variant: PrintfulVariant, quantity: number) => void;
+    addToCart: (product: PrintfulSyncProduct, variant: PrintfulVariant, quantity: number) => void;
     removeFromCart: (itemId: string) => void;
     updateQuantity: (itemId: string, quantity: number) => void;
     clearCart: () => void;
@@ -39,7 +39,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
     }, [items]);
 
-    const addToCart = (product: PrintfulProduct, variant: PrintfulVariant, quantity: number) => {
+    const addToCart = (product: PrintfulSyncProduct, variant: PrintfulVariant, quantity: number) => {
         const itemId = `${product.id}-${variant.id}`;
 
         setItems(prevItems => {

@@ -1,4 +1,4 @@
-import type { PrintfulProduct, PrintfulSyncProduct } from '../types/printful'
+import type { PrintfulProduct, PrintfulProductResponse } from '../types/printful'
 
 // Use Netlify Functions for API calls to avoid CORS issues
 const API_BASE = import.meta.env.DEV
@@ -22,7 +22,7 @@ export const printfulAPI = {
         }
     },
 
-    async getProduct(id: string): Promise<PrintfulSyncProduct> {
+    async getProduct(id: string): Promise<PrintfulProductResponse> {
         try {
             const response = await fetch(`${API_BASE}/product/${id}`)
 
