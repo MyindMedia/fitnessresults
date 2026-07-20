@@ -57,6 +57,9 @@ export interface PrintfulSyncProduct {
     synced: number;
     thumbnail_url: string;
     is_ignored: boolean;
+    // Sourced from the catalog product (api.printful.com/products/{id}) and
+    // attached server-side in netlify/functions/product.ts.
+    description?: string;
 }
 
 export interface PrintfulProductResponse {

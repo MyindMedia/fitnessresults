@@ -50,6 +50,33 @@ export const handler: Handler = async (event) => {
 
         const data = await response.json()
 
+        // Printful's store product API doesn't include a product description.
+        // The description lives on the underlying catalog product, referenced by
+        // each sync variant's product.product_id. Fetch it and attach it to
+        // sync_product so the storefront can show a real Printful description.
+        try {
+            const catalogProductId = data?.result?.sync_variants?.[0]?.product?.product_id
+            if (catalogProductId && data?.result?.sync_product) {
+                const catalogResponse = await fetch(`https://api.printful.com/products/${catalogProductId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${PRINTFUL_API_TOKEN}`,
+                        'Content-Type': 'application/json',
+                    },
+                })
+
+                if (catalogResponse.ok) {
+                    const catalogData = await catalogResponse.json()
+                    const description = catalogData?.result?.product?.description
+                    if (description) {
+                        data.result.sync_product.description = description
+                    }
+                }
+            }
+        } catch (catalogError) {
+            // Non-fatal: return the product without a description rather than failing.
+            console.error('Error fetching catalog description:', catalogError)
+        }
+
         return {
             statusCode: 200,
             headers,

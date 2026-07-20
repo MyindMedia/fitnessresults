@@ -136,8 +136,14 @@ const Product = () => {
                                 In Stock
                             </div>
 
-                            {/* Printful API doesn't return a description in sync_variants easily without extra catalog calls */}
-                            <p className="product-description"></p>
+                            <div className="product-description-section">
+                                <h3 className="product-description-heading">Description</h3>
+                                <p className="product-description">
+                                    {productData.sync_product.description
+                                        ? productData.sync_product.description
+                                        : 'No description available for this product.'}
+                                </p>
+                            </div>
 
                             <div className="product-options">
                                 {sizes.length > 0 && (
