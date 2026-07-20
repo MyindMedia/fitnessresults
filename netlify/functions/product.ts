@@ -54,22 +54,44 @@ export const handler: Handler = async (event) => {
         // The description lives on the underlying catalog product, referenced by
         // each sync variant's product.product_id. Fetch it and attach it to
         // sync_product so the storefront can show a real Printful description.
+        //
+        // The current catalog lives in the v2 API (/v2/catalog-products/{id});
+        // newer products (e.g. Adidas) 404 on the legacy v1 /products/{id}
+        // endpoint. Try v2 first, then fall back to v1 for older products.
         try {
             const catalogProductId = data?.result?.sync_variants?.[0]?.product?.product_id
             if (catalogProductId && data?.result?.sync_product) {
-                const catalogResponse = await fetch(`https://api.printful.com/products/${catalogProductId}`, {
-                    headers: {
-                        'Authorization': `Bearer ${PRINTFUL_API_TOKEN}`,
-                        'Content-Type': 'application/json',
-                    },
-                })
+                const authHeaders = {
+                    'Authorization': `Bearer ${PRINTFUL_API_TOKEN}`,
+                    'Content-Type': 'application/json',
+                }
 
-                if (catalogResponse.ok) {
-                    const catalogData = await catalogResponse.json()
-                    const description = catalogData?.result?.product?.description
-                    if (description) {
-                        data.result.sync_product.description = description
+                let description: string | undefined
+
+                // v2 catalog (current) — response shape: { data: { description } }
+                const v2Response = await fetch(
+                    `https://api.printful.com/v2/catalog-products/${catalogProductId}`,
+                    { headers: authHeaders }
+                )
+                if (v2Response.ok) {
+                    const v2Data = await v2Response.json()
+                    description = v2Data?.data?.description
+                }
+
+                // v1 catalog (legacy) fallback — shape: { result: { product: { description } } }
+                if (!description) {
+                    const v1Response = await fetch(
+                        `https://api.printful.com/products/${catalogProductId}`,
+                        { headers: authHeaders }
+                    )
+                    if (v1Response.ok) {
+                        const v1Data = await v1Response.json()
+                        description = v1Data?.result?.product?.description
                     }
+                }
+
+                if (description) {
+                    data.result.sync_product.description = description
                 }
             }
         } catch (catalogError) {
