@@ -97,3 +97,14 @@
 @media (max-width: 768px) {
     .memberships .program-actions .btn { width: 100%; }
 }
+
+/* Keep all four training programs in an even two-by-two layout. */
+.memberships .programs-section .grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+}
+@media (max-width: 768px) {
+    .memberships .programs-section .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
