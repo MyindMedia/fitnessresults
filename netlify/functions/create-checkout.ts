@@ -1,12 +1,6 @@
 import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY || '';
-const stripe = new Stripe(stripeSecretKey, {
-    // @ts-ignore - Stripe version compatibility
-    apiVersion: '2023-10-16',
-});
-
 interface CheckoutItem {
     name: string;
     description?: string;
@@ -21,9 +15,15 @@ export const handler: Handler = async (event) => {
     }
 
     try {
+        const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
         if (!stripeSecretKey) {
-            throw new Error('STRIPE_SECRET_KEY is not set in the environment variables.');
+            return {
+                statusCode: 503,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ error: 'Online checkout is temporarily unavailable. Please contact Fitness Results for help with your order.' }),
+            };
         }
+        const stripe = new Stripe(stripeSecretKey);
 
         const { items } = JSON.parse(event.body || '{}') as { items: CheckoutItem[] };
 
@@ -41,7 +41,7 @@ export const handler: Handler = async (event) => {
                 product_data: {
                     name: item.name,
                     images: item.images?.length ? item.images : undefined,
-                    description: item.description,
+                    description: item.description || undefined,
                 },
                 unit_amount: Math.round(item.amount * 100),
             },
@@ -78,3 +78,4 @@ export const handler: Handler = async (event) => {
         };
     }
 };
+

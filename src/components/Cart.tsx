@@ -5,8 +5,11 @@ import './Cart.css';
 const Cart = () => {
     const { items, total, removeFromCart, updateQuantity, closeCart, isCartOpen } = useCart();
     const [isCheckingOut, setIsCheckingOut] = useState(false);
+    const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
     const handleCheckout = async () => {
+        if (isCheckingOut || items.length === 0) return;
+        setCheckoutError(null);
         setIsCheckingOut(true);
         try {
             const checkoutItems = items.map(item => ({
@@ -25,17 +28,13 @@ const Cart = () => {
                 body: JSON.stringify({ items: checkoutItems }),
             });
 
-            const data = await response.json();
-
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                console.error('Checkout error:', data.error);
-                alert('An error occurred during checkout. Please try again.');
+            const data = await response.json().catch(() => null);
+            if (!response.ok || !data?.url) {
+                throw new Error(data?.error || 'We could not open checkout. Please try again or contact us for help.');
             }
+            window.location.href = data.url;
         } catch (error) {
-            console.error('Error initiating checkout:', error);
-            alert('An error occurred during checkout. Please try again.');
+            setCheckoutError(error instanceof Error ? error.message : 'We could not open checkout. Please try again.');
         } finally {
             setIsCheckingOut(false);
         }
@@ -104,6 +103,12 @@ const Cart = () => {
 
                 {items.length > 0 && (
                     <div className="cart-footer">
+                        {checkoutError && (
+                            <div role="alert" style={{ marginBottom: '16px' }}>
+                                <p>{checkoutError}</p>
+                                <a href="/contact">Contact us for help with your order</a>
+                            </div>
+                        )}
                         <div className="cart-total">
                             <span>Subtotal:</span>
                             <span className="total-amount">${total.toFixed(2)}</span>
@@ -126,3 +131,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
