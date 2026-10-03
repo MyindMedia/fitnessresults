@@ -24,7 +24,7 @@ const Memberships = () => {
 
                     <div className="grid grid-2">
                         <div className="program-card card-glass">
-                            <img className="program-photo" src="/images/personal-training.webp" alt="A Fitness Results trainer coaching a client through a dumbbell exercise" loading="lazy" width="730" height="730" />
+                            <img className="program-photo" src="/images/personal-training-memberships.jpg" alt="A Fitness Results trainer guiding a client through a barbell curl" loading="lazy" width="1920" height="1280" style={{ objectPosition: 'center 50%' }} />
                             <div className="program-content">
                             <h3>Personal Training</h3>
                             <p>
@@ -66,7 +66,7 @@ const Memberships = () => {
                         </div>
 
                         <div className="program-card card-glass">
-                            <img className="program-photo" src="/images/group-classes.webp" alt="A group working out together with dumbbells" loading="lazy" width="730" height="730" />
+                            <img className="program-photo" src="/images/group-classes-memberships.jpg" alt="Fitness Results members exercising together with resistance bands and dumbbells" loading="lazy" width="1280" height="1920" style={{ objectPosition: 'center 50%' }} />
                             <div className="program-content">
                             <h3>Group Classes</h3>
                             <p>
