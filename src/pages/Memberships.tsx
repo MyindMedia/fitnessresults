@@ -45,7 +45,7 @@ const Memberships = () => {
                         </div>
 
                         <div className="program-card card-glass">
-                            <img className="program-photo" src="/images/group-classes.webp" alt="Workout partners training together with dumbbells" loading="lazy" width="730" height="730" />
+                            <img className="program-photo" src="/images/partner-training-memberships.jpg" alt="Two workout partners at Fitness Results with a medicine ball and water bottle" loading="lazy" width="1920" height="1280" style={{ objectPosition: 'center 45%' }} />
                             <div className="program-content">
                             <h3>Partner Training</h3>
                             <p>
