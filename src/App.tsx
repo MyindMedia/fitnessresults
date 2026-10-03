@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { useLayoutEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -12,6 +13,13 @@ import Product from './pages/Product'
 import Success from './pages/Success'
 
 function App() {
+    const { pathname } = useLocation()
+
+    useLayoutEffect(() => {
+        // Each new page starts at its heading rather than retaining the previous page's scroll.
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    }, [pathname])
+
     return (
         <CartProvider>
             <div className="app">
