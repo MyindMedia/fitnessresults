@@ -48,8 +48,8 @@ const Footer = () => {
                     <div className="footer-section">
                         <h4 className="footer-heading">Contact Info</h4>
                         <div className="contact-info">
-                            <p>167 S 3rd Ave</p>
-                            <p>Upland, CA 91786</p>
+                            <p>8920 Vernon Ave., Suite #120</p>
+                            <p>Montclair, CA 91763</p>
                             <a href="tel:9096081780" className="footer-link">(909) 608-1780</a>
                             <a href="mailto:fitnessresultsactive@gmail.com" className="footer-link">
                                 fitnessresultsactive@gmail.com
@@ -87,3 +87,4 @@ const Footer = () => {
 }
 
 export default Footer
+

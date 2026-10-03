@@ -50,7 +50,7 @@ const Home = () => {
                         </h1>
                         <p className="hero-subtitle">
                             Your Goals. Our Mission. Experience personalized training, group classes,
-                            and a supportive community in Downtown Upland.
+                            and a supportive community in Montclair.
                         </p>
                         <div className="hero-ctas">
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
@@ -259,3 +259,4 @@ const Home = () => {
 }
 
 export default Home
+

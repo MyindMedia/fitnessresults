@@ -222,7 +222,7 @@ const ScheduleVisit = () => {
                             <div className="info-card card-glass">
                                 <h3>Location & Hours</h3>
                                 <div className="location-info">
-                                    <p><strong>Address:</strong><br />167 S 3rd Ave<br />Upland, CA 91786</p>
+                                    <p><strong>Address:</strong><br />8920 Vernon Ave., Suite #120<br />Montclair, CA 91763</p>
                                     <p><strong>Phone:</strong><br /><a href="tel:9096081780">(909) 608-1780</a></p>
                                     <p><strong>Hours:</strong><br />
                                         Mon-Fri: 5:00 AM - 9:00 PM<br />
@@ -240,3 +240,4 @@ const ScheduleVisit = () => {
 }
 
 export default ScheduleVisit
+

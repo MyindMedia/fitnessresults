@@ -169,7 +169,7 @@ const Store = () => {
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                             <h3>Local Pickup</h3>
-                            <p>Pick up your order at our Upland location</p>
+                            <p>Pick up your order at our Montclair location</p>
                         </div>
                         <div className="info-card">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -187,3 +187,4 @@ const Store = () => {
 }
 
 export default Store
+

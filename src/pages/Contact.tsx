@@ -149,8 +149,8 @@ const Contact = () => {
                                     </svg>
                                 </div>
                                 <h3>Visit Us</h3>
-                                <p>167 S 3rd Ave<br />Upland, CA 91786</p>
-                                <a href="https://maps.google.com/?q=167+S+3rd+Ave+Upland+CA" target="_blank" rel="noopener noreferrer" className="contact-link">
+                                <p>8920 Vernon Ave., Suite #120<br />Montclair, CA 91763</p>
+                                <a href="https://maps.google.com/?q=8920+Vernon+Ave+Suite+%23120+Montclair+CA+91763" target="_blank" rel="noopener noreferrer" className="contact-link">
                                     Get Directions →
                                 </a>
                             </div>
@@ -207,3 +207,4 @@ const Contact = () => {
 }
 
 export default Contact
+
