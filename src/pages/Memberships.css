@@ -108,3 +108,73 @@
         grid-template-columns: minmax(0, 1fr);
     }
 }
+
+/* Give each program a clear heading, readable body, benefits, and action footer. */
+.memberships .program-card {
+    padding: 0;
+    text-align: left;
+}
+.memberships .program-content {
+    padding: clamp(24px, 3vw, 36px);
+    gap: 20px;
+    align-items: stretch;
+}
+.memberships .program-content h3 {
+    width: 100%;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin: 0;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--color-primary);
+}
+.memberships .program-content > p {
+    max-width: none;
+    width: 100%;
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+}
+.memberships .program-benefits {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 4px;
+}
+.memberships .program-benefits li {
+    padding: 12px 14px 12px 32px;
+    border-radius: 10px;
+    background: var(--color-bg-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+.memberships .program-benefits li::before {
+    content: '✓';
+    left: 12px;
+    top: 12px;
+}
+.memberships .program-actions {
+    border-top: 1px solid var(--color-border);
+    padding-top: 20px;
+    gap: 14px;
+    justify-content: space-between;
+}
+.memberships .program-actions .btn {
+    flex: 1 1 220px;
+    white-space: normal;
+    text-align: center;
+    min-height: 48px;
+}
+.memberships .program-contact {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+}
+@media (max-width: 480px) {
+    .memberships .program-benefits { grid-template-columns: 1fr; }
+    .memberships .program-actions { flex-direction: column; align-items: stretch; }
+    .memberships .program-actions .btn { flex: none; width: 100%; }
+    .memberships .program-contact { justify-content: center; }
+}
