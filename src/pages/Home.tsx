@@ -19,7 +19,6 @@ const Home = () => {
                             Caring, professional coaching grounded in biomechanics, controlled movement, and progressive strength training. 20+ years
                             serving the Inland Empire.
                         </p>
-                        <p className="no-contracts-callout"><strong>NO CONTRACTS. EVER.</strong><span>Stay because it works for you. No pressure.</span></p>
                         <div className="hero-ctas">
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
                                 Book a Consultation
@@ -119,37 +118,43 @@ const Home = () => {
             {/* Mission Section */}
             <section className="section mission">
                 <div className="container">
+                    <div className="section-header text-center mission-heading">
+                        <h2>Safe. Effective. Efficient.</h2>
+                    </div>
                     <div className="mission-content">
                         <div className="mission-text animate-slide-in-left">
-                            <h2>Safe. Effective. Efficient.</h2>
                             <p className="mission-description">
                                 For more than 20 years, we've helped Inland Empire clients train with confidence.
                                 We apply biomechanics to exercise selection, coach controlled movement and good technique,
-                                and build strength gradually. We prioritize low-risk exercises with meaningful benefits,
-                                adjusting the workload and pace to your needs.
-                                Every workout has a purpose. Every client deserves to feel heard.
+                                and build strength gradually.
                             </p>
-                            <div className="stats-grid">
-                                <div className="stat-item">
-                                    <div className="stat-number">20+</div>
-                                    <div className="stat-label">Years Serving the Inland Empire</div>
-                                </div>
-                                <div className="stat-item">
-                                    <div className="stat-number">Custom</div>
-                                    <div className="stat-label">Workouts Built Around You</div>
-                                </div>
-                                <div className="stat-item">
-                                    <div className="stat-number no-contracts-stat">NO CONTRACTS</div>
-                                    <div className="stat-label">Stay Because It Works for You</div>
-                                </div>
-                            </div>
-                            <Link to="/schedule-visit" className="btn btn-primary btn-lg">
-                                Meet Your Coaching Team
-                            </Link>
+                            <p className="mission-description">
+                                We prioritize low-risk exercises with meaningful benefits, adjusting the workload and pace
+                                to your needs. Every workout has a purpose. Every client deserves to feel heard.
+                            </p>
                         </div>
                         <div className="mission-image animate-slide-in-right">
                             <img className="coaching-team-photo" src="/images/coaching-team.jpg" alt="The Fitness Results coaching team smiling together in the gym" width="1920" height="1280" loading="lazy" />
                         </div>
+                    </div>
+                    <div className="stats-grid mission-highlights">
+                        <div className="stat-item">
+                            <div className="stat-number">20+ Years</div>
+                            <div className="stat-label">Serving the Inland Empire</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">Custom Workouts</div>
+                            <div className="stat-label">Built Around You</div>
+                        </div>
+                        <div className="stat-item">
+                            <div className="stat-number">NO CONTRACTS</div>
+                            <div className="stat-label">Stay Because It Works for You</div>
+                        </div>
+                    </div>
+                    <div className="mission-team-cta text-center">
+                        <Link to="/schedule-visit" className="btn btn-primary btn-lg">
+                            Meet Your Coaching Team
+                        </Link>
                     </div>
                 </div>
             </section>

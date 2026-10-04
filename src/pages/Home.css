@@ -540,3 +540,38 @@
     border: 1px solid var(--color-border);
     box-shadow: var(--shadow-lg);
 }
+
+/* Balance the coaching photo and copy, with an even full-width highlight row. */
+.home .mission-heading { margin-bottom: 40px; }
+.home .mission-content { gap: 48px; }
+.home .mission-description { margin-bottom: 20px; }
+.home .mission-description:last-child { margin-bottom: 0; }
+.home .mission-highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    margin: 40px 0 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+}
+.home .mission-highlights .stat-item { padding: 0 20px; }
+.home .mission-highlights .stat-item + .stat-item { border-left: 1px solid var(--color-border); }
+.home .mission-highlights .stat-number {
+    background: none;
+    color: #006b80;
+    -webkit-text-fill-color: #006b80;
+    font-size: clamp(1.3rem, 2.3vw, 1.85rem);
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+.home .mission-highlights .stat-label { font-size: .8rem; line-height: 1.6; }
+@media (max-width: 968px) {
+    .home .mission-content { gap: 28px; }
+    .home .mission-image { order: 0; }
+}
+@media (max-width: 600px) {
+    .home .mission-highlights { grid-template-columns: 1fr; padding: 0; margin-top: 28px; }
+    .home .mission-highlights .stat-item { padding: 22px 12px; }
+    .home .mission-highlights .stat-item + .stat-item { border-left: 0; border-top: 1px solid var(--color-border); }
+    .home .mission-team-cta .btn { white-space: normal; }
+}
