@@ -1,41 +1,7 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
 
 const Home = () => {
-    const [activeTestimonial, setActiveTestimonial] = useState(0)
-
-    const testimonials = [
-        {
-            name: "Sarah Johnson",
-            role: "Lost 45 lbs",
-            quote: "Fitness Results changed my life! The trainers are incredibly supportive and the community is amazing.",
-            rating: 5,
-            image: "/images/testimonial-1.jpg"
-        },
-        {
-            name: "Mike Chen",
-            role: "Gained 20 lbs muscle",
-            quote: "Best investment I've ever made. The personal training program helped me achieve goals I never thought possible.",
-            rating: 5,
-            image: "/images/testimonial-2.jpg"
-        },
-        {
-            name: "Emily Rodriguez",
-            role: "Marathon Finisher",
-            quote: "From struggling with basic exercises to running my first marathon. The journey has been incredible!",
-            rating: 5,
-            image: "/images/testimonial-3.jpg"
-        }
-    ]
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveTestimonial((prev) => (prev + 1) % testimonials.length)
-        }, 5000)
-        return () => clearInterval(interval)
-    }, [])
-
     return (
         <div className="home">
             {/* Hero Section */}
@@ -45,19 +11,20 @@ const Home = () => {
                 <div className="container hero-content">
                     <div className="hero-text animate-slide-up">
                         <h1 className="hero-title">
-                            Achieve Your
-                            <span className="text-gradient"> Fitness Goals</span>
+                            Feel Stronger.
+                            <span className="text-gradient"> Train With Care.</span>
                         </h1>
                         <p className="hero-subtitle">
-                            Your Goals. Our Mission. Experience personalized training, group classes,
-                            and a supportive community in Montclair.
+                            Personal training built around your body, your goals, and your life.
+                            Caring, professional coaching backed by exercise science and 20+ years
+                            serving the Inland Empire. No contracts. No pressure.
                         </p>
                         <div className="hero-ctas">
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
-                                Start Today
+                                Book a Consultation
                             </Link>
                             <Link to="/memberships" className="btn btn-secondary btn-lg">
-                                View Memberships
+                                Explore Training Programs
                             </Link>
                         </div>
                     </div>
@@ -69,7 +36,7 @@ const Home = () => {
             <section className="section services bg-gradient-radial">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2 className="animate-slide-up" style={{ color: '#00CED1', fontSize: '3rem', fontWeight: '700', marginBottom: '3rem' }}>EVERY NEED MET</h2>
+                        <h2 className="animate-slide-up" style={{ color: '#00CED1', fontSize: '3rem', fontWeight: '700', marginBottom: '3rem' }}>TRAINING THAT FITS YOU</h2>
                     </div>
 
                     <div className="services-grid">
@@ -79,9 +46,9 @@ const Home = () => {
                             </div>
                             <h3>Personal Training</h3>
                             <p>
-                                One-on-one coaching designed around your unique goals. Get personalized workouts,
-                                expert guidance, and accountability to maximize your results. <strong>We also specialize in
-                                    supporting seniors and those returning from injury.</strong>
+                                Your trainer listens first, then builds each workout around your needs, experience,
+                                and goals. Get thoughtful exercise selection, hands-on guidance, and encouragement
+                                that helps you feel confident from your first session.
                             </p>
                         </div>
 
@@ -91,9 +58,9 @@ const Home = () => {
                             </div>
                             <h3>Partner Training</h3>
                             <p>
-                                Train with a friend—or up to four! Enjoy the motivation of a small group while still getting
-                                customized attention from your trainer. It's a <strong>great option for families, couples, or friends</strong> who
-                                want to grow stronger together. It's about connection and results.
+                                Share the experience with a friend, partner, or family member. With 2–3 people
+                                per session, you get individual coaching and workouts adapted to each person's
+                                ability—plus the encouragement of training together.
                             </p>
                         </div>
 
@@ -103,9 +70,9 @@ const Home = () => {
                             </div>
                             <h3>Group Classes</h3>
                             <p>
-                                High-energy, community-driven workouts that challenge and inspire. Push yourself alongside
-                                others and stay consistent with fun, structured training. Our classes bring the energy of a team
-                                atmosphere while still giving you the tools to hit your personal goals.
+                                Enjoy the energy of a group with professional instruction and options for your
+                                fitness level. Build strength and consistency in a welcoming community where
+                                encouragement matters more than competition.
                             </p>
                         </div>
                     </div>
@@ -116,9 +83,9 @@ const Home = () => {
             <section className="section transformation">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2 className="animate-slide-up">Real Transformations</h2>
+                        <h2 className="animate-slide-up">Progress That Matters to You</h2>
                         <p className="section-subtitle animate-slide-up">
-                            See the incredible results our members achieve
+                            More strength. More confidence. More ability to enjoy everyday life.
                         </p>
                     </div>
 
@@ -139,10 +106,10 @@ const Home = () => {
 
                     <div className="transformation-cta text-center">
                         <p className="transformation-quote">
-                            "Your transformation story starts here. Join our community and achieve results you never thought possible."
+                            Your goals are personal. Whether you're building strength, improving fitness, or getting back into a routine, we'll help you take the next step at a pace that fits you.
                         </p>
                         <Link to="/schedule-visit" className="btn btn-primary btn-lg">
-                            Start Your Transformation
+                            Talk About Your Goals
                         </Link>
                     </div>
                 </div>
@@ -153,28 +120,29 @@ const Home = () => {
                 <div className="container">
                     <div className="mission-content">
                         <div className="mission-text animate-slide-in-left">
-                            <h2>Confidence. Strength. Results.</h2>
+                            <h2>Safe. Effective. Efficient.</h2>
                             <p className="mission-description">
-                                At Fitness Results, our mission is to make fitness accessible to everyone—no matter
-                                age, budget, or ability. We provide personalized training, partner sessions, and
-                                group classes that meet you where you are.
+                                For more than 20 years, we've helped Inland Empire clients train with confidence.
+                                Our approach is grounded in exercise science: choose exercises with a thoughtful
+                                balance of risk and benefit, coach good technique, and progress at a pace that fits you.
+                                Every workout has a purpose. Every client deserves to feel heard.
                             </p>
                             <div className="stats-grid">
                                 <div className="stat-item">
-                                    <div className="stat-number">10+</div>
-                                    <div className="stat-label">Years Experience</div>
+                                    <div className="stat-number">20+</div>
+                                    <div className="stat-label">Years Serving the Inland Empire</div>
                                 </div>
                                 <div className="stat-item">
-                                    <div className="stat-number">500+</div>
-                                    <div className="stat-label">Happy Members</div>
+                                    <div className="stat-number">Custom</div>
+                                    <div className="stat-label">Workouts Built Around You</div>
                                 </div>
                                 <div className="stat-item">
-                                    <div className="stat-number">1000+</div>
-                                    <div className="stat-label">Transformations</div>
+                                    <div className="stat-number">No Contracts</div>
+                                    <div className="stat-label">Stay Because It Works for You</div>
                                 </div>
                             </div>
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
-                                Join Us Today
+                                Meet Your Coaching Team
                             </Link>
                         </div>
                         <div className="mission-image animate-slide-in-right">
@@ -186,50 +154,16 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Testimonials Section */}
             <section className="section testimonials bg-gradient-radial">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h2 className="animate-slide-up">Success Stories</h2>
-                        <p className="section-subtitle animate-slide-up">
-                            Real results from real people
-                        </p>
+                        <h2>A Gym Where You Can Feel at Home</h2>
+                        <p className="section-subtitle">Professional coaching. Personal attention. No pressure to commit.</p>
                     </div>
-
-                    <div className="testimonial-carousel">
-                        {testimonials.map((testimonial, index) => (
-                            <div
-                                key={index}
-                                className={`testimonial-card ${index === activeTestimonial ? 'active' : ''}`}
-                            >
-                                <div className="testimonial-content">
-                                    <div className="stars">
-                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                            <span key={i} className="star">★</span>
-                                        ))}
-                                    </div>
-                                    <p className="testimonial-quote">"{testimonial.quote}"</p>
-                                    <div className="testimonial-author">
-                                        <div className="author-avatar"></div>
-                                        <div>
-                                            <div className="author-name">{testimonial.name}</div>
-                                            <div className="author-role">{testimonial.role}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="testimonial-dots">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                className={`dot ${index === activeTestimonial ? 'active' : ''}`}
-                                onClick={() => setActiveTestimonial(index)}
-                                aria-label={`View testimonial ${index + 1}`}
-                            />
-                        ))}
+                    <div className="grid grid-3">
+                        <div className="card-glass"><h3>We Listen First</h3><p>Tell us what you want to achieve, what feels challenging, and what you need from a coach. Your plan starts with understanding you.</p></div>
+                        <div className="card-glass"><h3>We Train With Purpose</h3><p>Science-informed exercise selection, clear instruction, and sensible progression help you make the most of your time with us.</p></div>
+                        <div className="card-glass"><h3>We Earn Your Next Visit</h3><p>NO CONTRACTS. Our clients stay because the training works for them, they feel supported, and they enjoy being here.</p></div>
                     </div>
                 </div>
             </section>
@@ -238,14 +172,14 @@ const Home = () => {
             <section className="section cta-section">
                 <div className="container">
                     <div className="cta-card glass-strong">
-                        <h2 className="animate-scale-in">Ready to Transform Your Life?</h2>
+                        <h2 className="animate-scale-in">Let's Start With a Conversation.</h2>
                         <p className="animate-scale-in">
-                            Join hundreds of members who have achieved their fitness goals with us.
-                            Start your journey today with a free consultation.
+                            Meet us, share your goals, and explore a plan built for you.
+                            Your consultation is a chance to ask questions—not a commitment to join.
                         </p>
                         <div className="cta-buttons animate-scale-in">
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
-                                Schedule Free Consultation
+                                Book a Consultation
                             </Link>
                             <Link to="/contact" className="btn btn-ghost btn-lg">
                                 Contact Us

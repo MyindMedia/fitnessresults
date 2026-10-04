@@ -6,9 +6,9 @@ const Memberships = () => {
         <div className="memberships">
             <section className="page-hero">
                 <div className="container">
-                    <h1 className="animate-slide-up">Memberships & Training</h1>
+                    <h1 className="animate-slide-up">Training Built Around You</h1>
                     <p className="page-subtitle animate-slide-up">
-                        Explore our programs and let us help you find the right fit for your goals.
+                        Safe. Effective. Efficient. Personalized coaching in a welcoming, professional gym.
                     </p>
                 </div>
             </section>
@@ -18,7 +18,7 @@ const Memberships = () => {
                     <div className="section-header text-center">
                         <h2>Training Programs</h2>
                         <p className="section-subtitle">
-                            Choose how you train. Contact us or schedule a consultation for program details and personalized recommendations.
+                            NO CONTRACTS. Choose the way you like to train, and let us help you find the right fit. Our clients stay because they see value and enjoy being here.
                         </p>
                     </div>
 
@@ -28,8 +28,9 @@ const Memberships = () => {
                             <div className="program-content">
                             <h3>Personal Training</h3>
                             <p>
-                                Work one-on-one with certified trainers who create customized workout plans
-                                tailored to your goals, fitness level, and any physical limitations.
+                                Your goals, your starting point, your plan. Work one-on-one with a trainer who
+                                adapts each session to your needs, guides your technique, and helps you build
+                                strength and confidence with purposeful, science-informed exercise.
                             </p>
                             <ul className="program-benefits">
                                 <li>Personalized workout plans</li>
@@ -49,14 +50,15 @@ const Memberships = () => {
                             <div className="program-content">
                             <h3>Partner Training</h3>
                             <p>
-                                Train with friends, family, or meet new workout partners. Enjoy the benefits
-                                of personal training while sharing the experience and cost.
+                                Build a routine you enjoy with a friend, partner, or family member. Share the
+                                encouragement of training together while your coach adjusts exercises and
+                                intensity to each person's needs.
                             </p>
                             <ul className="program-benefits">
                                 <li>2–3 people per session</li>
                                 <li>Customized group workouts</li>
                                 <li>Shared motivation</li>
-                                <li>Cost-effective training</li>
+                                <li>Individual exercise adjustments</li>
                             </ul>
                             <div className="program-actions">
                                 <Link to="/schedule-visit" className="btn btn-primary">Schedule a Consultation</Link>
@@ -70,8 +72,9 @@ const Memberships = () => {
                             <div className="program-content">
                             <h3>Group Classes</h3>
                             <p>
-                                High-energy classes led by expert instructors. From HIIT to strength training,
-                                find the perfect class to match your fitness style.
+                                Move with a supportive group and professional guidance. Enjoy structured
+                                workouts with exercise options for your ability, so you can challenge yourself
+                                at your own pace and leave feeling encouraged.
                             </p>
                             <ul className="program-benefits">
                                 <li>Varied class schedule</li>
@@ -91,12 +94,13 @@ const Memberships = () => {
                             <div className="program-content">
                             <h3>Senior Fitness</h3>
                             <p>
-                                Specialized programs for seniors focusing on mobility, balance, and strength.
-                                Safe, effective training that builds confidence.
+                                Build strength, balance, and mobility for the things you love to do.
+                                Patient, attentive coaching and gradual progression support your individual
+                                needs and help you feel more confident in everyday movement.
                             </p>
                             <ul className="program-benefits">
                                 <li>Age-appropriate exercises</li>
-                                <li>Fall prevention focus</li>
+                                <li>Balance & everyday mobility</li>
                                 <li>Gentle progression</li>
                                 <li>Supportive environment</li>
                             </ul>
@@ -112,8 +116,8 @@ const Memberships = () => {
 
             <section className="section consultation-section">
                 <div className="container text-center">
-                    <h2>Let's Find Your Fit</h2>
-                    <p>Tell us about your goals. We'll walk you through the training options, availability, and pricing in a personal consultation.</p>
+                    <h2>Your First Step Is a Conversation</h2>
+                    <p>Tell us what matters to you. We'll listen, explain your options, and help you choose a starting point. No contracts and no pressure—just a clear plan for your next step.</p>
                     <div className="consultation-actions">
                         <Link to="/schedule-visit" className="btn btn-primary btn-lg">Schedule a Consultation</Link>
                         <Link to="/contact" className="btn btn-secondary btn-lg">Contact Us</Link>

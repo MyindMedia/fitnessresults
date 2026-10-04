@@ -13,14 +13,10 @@ const ScheduleVisit = () => {
     })
 
     const [submitted, setSubmitted] = useState(false)
+    const [isSending, setIsSending] = useState(false)
+    const [submitError, setSubmitError] = useState('')
 
-    const trainers = [
-        { id: '1', name: 'Any Available Trainer' },
-        { id: '2', name: 'Mike Johnson - Strength Training' },
-        { id: '3', name: 'Sarah Williams - HIIT & Cardio' },
-        { id: '4', name: 'David Lee - Senior Fitness' },
-        { id: '5', name: 'Emma Davis - Weight Loss' },
-    ]
+    const trainers = [{ id: 'any', name: 'Help me choose the right trainer' }]
 
     const timeSlots = [
         '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM',
@@ -28,12 +24,25 @@ const ScheduleVisit = () => {
         '6:00 PM', '7:00 PM', '8:00 PM'
     ]
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        // Here you would integrate with Convex or your backend
-        console.log('Form submitted:', formData)
-        setSubmitted(true)
-        setTimeout(() => setSubmitted(false), 5000)
+        if (isSending) return
+        setIsSending(true)
+        setSubmitted(false)
+        setSubmitError('')
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ 'form-name': 'consultation', ...formData }).toString(),
+            })
+            if (!response.ok) throw new Error('Submission failed')
+            setSubmitted(true)
+        } catch {
+            setSubmitError("Your request could not be sent. Please call (909) 608-1780 or email fitnessresultsactive@gmail.com.")
+        } finally {
+            setIsSending(false)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -47,9 +56,9 @@ const ScheduleVisit = () => {
         <div className="schedule-visit">
             <section className="page-hero">
                 <div className="container">
-                    <h1 className="animate-slide-up">Schedule Your Visit</h1>
+                    <h1 className="animate-slide-up">Let's Find Your Starting Point</h1>
                     <p className="page-subtitle animate-slide-up">
-                        Book a free consultation and experience our facility firsthand
+                        Share your goals, meet our team, and explore training that fits you. No contracts. No pressure.
                     </p>
                 </div>
             </section>
@@ -59,9 +68,9 @@ const ScheduleVisit = () => {
                     <div className="booking-grid">
                         <div className="booking-form-container">
                             <div className="card-glass">
-                                <h2>Book Your Free Consultation</h2>
+                                <h2>Request Your Consultation</h2>
                                 <p className="form-intro">
-                                    Fill out the form below and we'll get back to you within 24 hours to confirm your appointment.
+                                    Tell us a little about yourself and your preferred time. We'll contact you to arrange your consultation. Prefer to talk? Call (909) 608-1780.
                                 </p>
 
                                 {submitted && (
@@ -70,11 +79,13 @@ const ScheduleVisit = () => {
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                         </svg>
-                                        <span>Thank you! We'll contact you soon to confirm your visit.</span>
+                                        <span>Thank you! Your request was sent. We'll contact you to arrange a time; your appointment is not yet confirmed.</span>
                                     </div>
                                 )}
 
-                                <form onSubmit={handleSubmit} className="booking-form">
+                                {submitError && <p role="alert">{submitError}</p>}
+                                <form name="consultation" method="POST" data-netlify="true" onSubmit={handleSubmit} className="booking-form">
+                                    <input type="hidden" name="form-name" value="consultation" />
                                     <div className="form-row">
                                         <div className="form-group">
                                             <label htmlFor="name" className="form-label">Full Name *</label>
@@ -177,8 +188,8 @@ const ScheduleVisit = () => {
                                         />
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary btn-full btn-lg">
-                                        Schedule My Visit
+                                    <button type="submit" disabled={isSending} className="btn btn-primary btn-full btn-lg">
+                                        Request My Consultation
                                     </button>
                                 </form>
                             </div>
@@ -191,29 +202,29 @@ const ScheduleVisit = () => {
                                     <div className="timeline-item">
                                         <div className="timeline-icon">1</div>
                                         <div className="timeline-content">
-                                            <h4>Facility Tour</h4>
-                                            <p>We'll show you around our state-of-the-art facility and equipment</p>
+                                            <h4>Meet Your Team</h4>
+                                            <p>Meet our team and get comfortable in our professional training facility.</p>
                                         </div>
                                     </div>
                                     <div className="timeline-item">
                                         <div className="timeline-icon">2</div>
                                         <div className="timeline-content">
-                                            <h4>Fitness Assessment</h4>
-                                            <p>Quick evaluation of your current fitness level and goals</p>
+                                            <h4>Tell Us About You</h4>
+                                            <p>Talk about your goals, exercise experience, and any concerns you want us to consider.</p>
                                         </div>
                                     </div>
                                     <div className="timeline-item">
                                         <div className="timeline-icon">3</div>
                                         <div className="timeline-content">
-                                            <h4>Program Discussion</h4>
-                                            <p>We'll recommend the best training program for your needs</p>
+                                            <h4>Explore Your Options</h4>
+                                            <p>Explore a science-informed plan that fits your needs, preferences, and schedule.</p>
                                         </div>
                                     </div>
                                     <div className="timeline-item">
                                         <div className="timeline-icon">4</div>
                                         <div className="timeline-content">
-                                            <h4>Q&A Session</h4>
-                                            <p>Ask any questions about memberships, training, or our facility</p>
+                                            <h4>Ask Anything</h4>
+                                            <p>Get clear answers about training and next steps. There's no pressure to join.</p>
                                         </div>
                                     </div>
                                 </div>

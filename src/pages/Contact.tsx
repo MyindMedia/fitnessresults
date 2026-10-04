@@ -11,15 +11,28 @@ const Contact = () => {
     })
 
     const [submitted, setSubmitted] = useState(false)
+    const [isSending, setIsSending] = useState(false)
+    const [submitError, setSubmitError] = useState('')
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
-        console.log('Contact form submitted:', formData)
-        setSubmitted(true)
-        setTimeout(() => {
-            setSubmitted(false)
-            setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-        }, 5000)
+        if (isSending) return
+        setIsSending(true)
+        setSubmitted(false)
+        setSubmitError('')
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({ 'form-name': 'contact', ...formData }).toString(),
+            })
+            if (!response.ok) throw new Error('Submission failed')
+            setSubmitted(true)
+        } catch {
+            setSubmitError("Your request could not be sent. Please call (909) 608-1780 or email fitnessresultsactive@gmail.com.")
+        } finally {
+            setIsSending(false)
+        }
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -35,7 +48,7 @@ const Contact = () => {
                 <div className="container">
                     <h1 className="animate-slide-up">Contact Us</h1>
                     <p className="page-subtitle animate-slide-up">
-                        We're here to help you start your fitness journey
+                        Questions, concerns, or ready to get started? We're here to listen.
                     </p>
                 </div>
             </section>
@@ -45,9 +58,9 @@ const Contact = () => {
                     <div className="contact-grid">
                         <div className="contact-form-container">
                             <div className="card-glass">
-                                <h2>Send Us a Message</h2>
+                                <h2>Let's Talk About You</h2>
                                 <p className="form-intro">
-                                    Have questions? Fill out the form and we'll get back to you as soon as possible.
+                                    Tell us about your goals or ask us anything about training. You'll get thoughtful guidance without pressure to sign up.
                                 </p>
 
                                 {submitted && (
@@ -56,11 +69,13 @@ const Contact = () => {
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                         </svg>
-                                        <span>Thank you! We'll get back to you within 24 hours.</span>
+                                        <span>Thank you! Your message was sent. We look forward to talking with you.</span>
                                     </div>
                                 )}
 
-                                <form onSubmit={handleSubmit} className="contact-form">
+                                {submitError && <p role="alert">{submitError}</p>}
+                                <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="contact-form">
+                                    <input type="hidden" name="form-name" value="contact" />
                                     <div className="form-row">
                                         <div className="form-group">
                                             <label htmlFor="name" className="form-label">Name *</label>
@@ -127,13 +142,13 @@ const Contact = () => {
                                             name="message"
                                             className="form-textarea"
                                             required
-                                            placeholder="Tell us how we can help you..."
+                                            placeholder="What would you like help with? Tell us about your goals, experience, or questions."
                                             value={formData.message}
                                             onChange={handleChange}
                                         />
                                     </div>
 
-                                    <button type="submit" className="btn btn-primary btn-full btn-lg">
+                                    <button type="submit" disabled={isSending} className="btn btn-primary btn-full btn-lg">
                                         Send Message
                                     </button>
                                 </form>
@@ -175,7 +190,7 @@ const Contact = () => {
                                 </div>
                                 <h3>Email Us</h3>
                                 <p><a href="mailto:fitnessresultsactive@gmail.com">fitnessresultsactive@gmail.com</a></p>
-                                <p className="response-text">We respond within 24 hours</p>
+                                <p className="response-text">Prefer a conversation? Give us a call.</p>
                             </div>
 
                             <div className="contact-card card-glass">

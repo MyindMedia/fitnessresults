@@ -24,8 +24,8 @@ const Header = () => {
 
     const navLinks = [
         { path: '/', label: 'Home' },
-        { path: '/memberships', label: 'Memberships' },
-        { path: '/schedule-visit', label: 'Schedule Visit' },
+        { path: '/memberships', label: 'Training Programs' },
+        { path: '/schedule-visit', label: 'Book a Consultation' },
         { path: '/store', label: 'Store' },
         { path: '/contact', label: 'Contact' },
     ]
@@ -64,7 +64,7 @@ const Header = () => {
                     </button>
 
                     <Link to="/schedule-visit" className="btn btn-primary">
-                        Start Today
+                        Book a Consultation
                     </Link>
 
                     <button

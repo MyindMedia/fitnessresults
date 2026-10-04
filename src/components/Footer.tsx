@@ -14,7 +14,8 @@ const Footer = () => {
                                 <img src="/images/logo.png" alt="Fitness Results" className="logo-image" />
                             </Link>
                         </div>
-                        <p className="footer-tagline">Your Goals. Our Mission.</p>
+                        <p className="footer-tagline">Safe. Effective. Efficient.</p>
+                        <p className="footer-tagline">20+ years serving the Inland Empire. NO CONTRACTS.</p>
                         <div className="social-links">
                             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-link">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -38,8 +39,8 @@ const Footer = () => {
                         <h4 className="footer-heading">Quick Links</h4>
                         <nav className="footer-nav">
                             <Link to="/" className="footer-link">Home</Link>
-                            <Link to="/memberships" className="footer-link">Memberships</Link>
-                            <Link to="/schedule-visit" className="footer-link">Schedule Visit</Link>
+                            <Link to="/memberships" className="footer-link">Training Programs</Link>
+                            <Link to="/schedule-visit" className="footer-link">Book a Consultation</Link>
                             <Link to="/store" className="footer-link">Store</Link>
                             <Link to="/contact" className="footer-link">Contact</Link>
                         </nav>
@@ -58,19 +59,9 @@ const Footer = () => {
                     </div>
 
                     <div className="footer-section">
-                        <h4 className="footer-heading">Newsletter</h4>
-                        <p className="newsletter-text">Stay updated with our latest offers and fitness tips</p>
-                        <form className="newsletter-form">
-                            <input
-                                type="email"
-                                placeholder="Your email"
-                                className="newsletter-input"
-                                required
-                            />
-                            <button type="submit" className="btn btn-primary">
-                                Subscribe
-                            </button>
-                        </form>
+                        <h4 className="footer-heading">Let's Talk About Your Goals</h4>
+                        <p className="newsletter-text">Meet our team and find a training approach that fits you. No contracts. No pressure.</p>
+                        <Link to="/schedule-visit" className="footer-link">Book a Consultation →</Link>
                     </div>
                 </div>
 
