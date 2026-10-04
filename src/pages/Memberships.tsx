@@ -83,7 +83,7 @@ const Memberships = () => {
                                 <li>Expert instruction</li>
                             </ul>
                             <div className="program-actions">
-                                <Link to="/schedule-visit" className="btn btn-primary">Schedule a Consultation</Link>
+                                <Link to="/group-classes" className="btn btn-primary">View Classes & Schedule</Link>
                                 <Link to="/contact" className="program-contact">Contact Us →</Link>
                             </div>
                             </div>

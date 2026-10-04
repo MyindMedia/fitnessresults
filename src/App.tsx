@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import Cart from './components/Cart'
 import Home from './pages/Home'
 import Memberships from './pages/Memberships'
+import GroupClasses from './pages/GroupClasses'
 import ScheduleVisit from './pages/ScheduleVisit'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
@@ -29,6 +30,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/memberships" element={<Memberships />} />
+                        <Route path="/group-classes" element={<GroupClasses />} />
                         <Route path="/schedule-visit" element={<ScheduleVisit />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/store" element={<Store />} />

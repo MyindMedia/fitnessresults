@@ -40,6 +40,7 @@ const Footer = () => {
                         <nav className="footer-nav">
                             <Link to="/" className="footer-link">Home</Link>
                             <Link to="/memberships" className="footer-link">Training Programs</Link>
+                            <Link to="/group-classes" className="footer-link">Group Classes</Link>
                             <Link to="/schedule-visit" className="footer-link">Book a Consultation</Link>
                             <Link to="/store" className="footer-link">Store</Link>
                             <Link to="/contact" className="footer-link">Contact</Link>
