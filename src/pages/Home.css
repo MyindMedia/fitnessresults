@@ -530,3 +530,13 @@
   -webkit-text-fill-color: #006b80;
   font-size: clamp(1.5rem, 2.5vw, 2rem);
 }
+
+/* Show the entire team without cropping faces at narrow widths. */
+.coaching-team-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+}

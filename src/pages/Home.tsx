@@ -67,7 +67,7 @@ const Home = () => {
 
                         <div className="service-circle-card animate-slide-up" style={{ animationDelay: '0.2s' }}>
                             <div className="circle-image">
-                                <img src="/images/group-classes.webp" alt="Group Classes" />
+                                <img src="/images/group-classes-memberships.jpg" alt="Fitness Results members training together with resistance bands and dumbbells" loading="lazy" style={{ objectPosition: 'center 40%' }} />
                             </div>
                             <h3>Group Classes</h3>
                             <p>
@@ -148,9 +148,7 @@ const Home = () => {
                             </Link>
                         </div>
                         <div className="mission-image animate-slide-in-right">
-                            <div className="image-placeholder">
-                                <div className="image-glow"></div>
-                            </div>
+                            <img className="coaching-team-photo" src="/images/coaching-team.jpg" alt="The Fitness Results coaching team smiling together in the gym" width="1920" height="1280" loading="lazy" />
                         </div>
                     </div>
                 </div>
