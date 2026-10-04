@@ -18,7 +18,7 @@ const Memberships = () => {
                     <div className="section-header text-center">
                         <h2>Training Programs</h2>
                         <p className="section-subtitle">
-                            NO CONTRACTS. Choose the way you like to train, and let us help you find the right fit. Our clients stay because they see value and enjoy being here.
+                            <strong className="no-contracts-badge">NO CONTRACTS. EVER.</strong> Choose the way you like to train, and let us help you find the right fit. Our clients stay because they see value and enjoy being here.
                         </p>
                     </div>
 
@@ -30,7 +30,7 @@ const Memberships = () => {
                             <p>
                                 Your goals, your starting point, your plan. Work one-on-one with a trainer who
                                 adapts each session to your needs, guides your technique, and helps you build
-                                strength and confidence with purposeful, science-informed exercise.
+                                strength and confidence through controlled movement and progressive strength training.
                             </p>
                             <ul className="program-benefits">
                                 <li>Personalized workout plans</li>

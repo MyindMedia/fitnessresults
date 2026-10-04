@@ -16,9 +16,10 @@ const Home = () => {
                         </h1>
                         <p className="hero-subtitle">
                             Personal training built around your body, your goals, and your life.
-                            Caring, professional coaching backed by exercise science and 20+ years
-                            serving the Inland Empire. No contracts. No pressure.
+                            Caring, professional coaching grounded in biomechanics, controlled movement, and progressive strength training. 20+ years
+                            serving the Inland Empire.
                         </p>
+                        <p className="no-contracts-callout"><strong>NO CONTRACTS. EVER.</strong><span>Stay because it works for you. No pressure.</span></p>
                         <div className="hero-ctas">
                             <Link to="/schedule-visit" className="btn btn-primary btn-lg">
                                 Book a Consultation
@@ -123,8 +124,9 @@ const Home = () => {
                             <h2>Safe. Effective. Efficient.</h2>
                             <p className="mission-description">
                                 For more than 20 years, we've helped Inland Empire clients train with confidence.
-                                Our approach is grounded in exercise science: choose exercises with a thoughtful
-                                balance of risk and benefit, coach good technique, and progress at a pace that fits you.
+                                We apply biomechanics to exercise selection, coach controlled movement and good technique,
+                                and build strength gradually. We prioritize low-risk exercises with meaningful benefits,
+                                adjusting the workload and pace to your needs.
                                 Every workout has a purpose. Every client deserves to feel heard.
                             </p>
                             <div className="stats-grid">
@@ -137,7 +139,7 @@ const Home = () => {
                                     <div className="stat-label">Workouts Built Around You</div>
                                 </div>
                                 <div className="stat-item">
-                                    <div className="stat-number">No Contracts</div>
+                                    <div className="stat-number no-contracts-stat">NO CONTRACTS</div>
                                     <div className="stat-label">Stay Because It Works for You</div>
                                 </div>
                             </div>
@@ -163,7 +165,7 @@ const Home = () => {
                     <div className="grid grid-3">
                         <div className="card-glass"><h3>We Listen First</h3><p>Tell us what you want to achieve, what feels challenging, and what you need from a coach. Your plan starts with understanding you.</p></div>
                         <div className="card-glass"><h3>We Train With Purpose</h3><p>Science-informed exercise selection, clear instruction, and sensible progression help you make the most of your time with us.</p></div>
-                        <div className="card-glass"><h3>We Earn Your Next Visit</h3><p>NO CONTRACTS. Our clients stay because the training works for them, they feel supported, and they enjoy being here.</p></div>
+                        <div className="card-glass"><h3>We Earn Your Next Visit</h3><p><strong>NO CONTRACTS. EVER.</strong> Our clients stay because the training works for them, they feel supported, and they enjoy being here.</p></div>
                     </div>
                 </div>
             </section>

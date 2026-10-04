@@ -223,7 +223,7 @@ const ScheduleVisit = () => {
                                         <div className="timeline-icon">3</div>
                                         <div className="timeline-content">
                                             <h4>Explore Your Options</h4>
-                                            <p>Explore a science-informed plan that fits your needs, preferences, and schedule.</p>
+                                            <p>Explore a plan built around exercise technique, appropriate resistance, and gradual progression that fits your needs and schedule.</p>
                                         </div>
                                     </div>
                                     <div className="timeline-item">

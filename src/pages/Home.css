@@ -501,3 +501,32 @@
         width: 100%;
     }
 }
+.home .hero-title .text-gradient {
+  background: none;
+  color: #00CED1;
+  -webkit-text-fill-color: #00CED1;
+}
+.home .no-contracts-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: fit-content;
+  padding: 16px 22px;
+  margin-bottom: 28px;
+  background: #fff;
+  border-left: 5px solid #00CED1;
+  border-radius: 8px;
+  color: #1a1a1a;
+}
+.no-contracts-callout strong {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
+.home .stat-number.no-contracts-stat {
+  background: none;
+  color: #006b80;
+  -webkit-text-fill-color: #006b80;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}

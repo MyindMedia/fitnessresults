@@ -589,3 +589,26 @@ a:hover {
     transform: rotate(360deg);
   }
 }
+/* Readable business details and prominent commitment-free training. */
+body a[href^="tel:"], body a[href^="mailto:"] {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  overflow-wrap: anywhere;
+}
+body a[href^="tel:"]:hover, body a[href^="mailto:"]:hover {
+  color: #006b80;
+}
+.no-contracts-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 20px;
+  padding: 12px 22px;
+  border: 2px solid #006b80;
+  border-radius: 8px;
+  color: #006b80;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  font-weight: 900;
+  letter-spacing: .04em;
+}
