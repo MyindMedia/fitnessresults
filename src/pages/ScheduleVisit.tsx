@@ -73,6 +73,12 @@ const ScheduleVisit = () => {
                                     Tell us a little about yourself and your preferred time. We'll contact you to arrange your consultation. Prefer to talk? Call (909) 608-1780.
                                 </p>
 
+                                <p className="form-intro">
+                                    <a href="tel:9096081780">Call (909) 608-1780</a>
+                                    {' · '}
+                                    <a href="mailto:fitnessresultsactive@gmail.com?subject=Fitness%20Results%20Consultation">Email our team</a>
+                                </p>
+
                                 {submitted && (
                                     <div className="success-message animate-scale-in">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
