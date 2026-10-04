@@ -152,7 +152,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="mission-team-cta text-center">
-                        <Link to="/schedule-visit" className="btn btn-primary btn-lg">
+                        <Link to="/coaches" className="btn btn-primary btn-lg">
                             Meet Your Coaching Team
                         </Link>
                     </div>
