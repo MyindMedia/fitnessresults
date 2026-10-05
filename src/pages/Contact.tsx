@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import './Contact.css'
 
 const Contact = () => {
@@ -8,7 +9,18 @@ const Contact = () => {
         phone: '',
         subject: '',
         message: '',
+        date: '',
+        time: '',
     })
+    const [params, setParams] = useSearchParams()
+    const consult = params.get('type') === 'consultation'
+    const timeSlots = ['6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM']
+    const choose = (consultation: boolean) => {
+        requestId.current = ''
+        setSubmitted(false)
+        setSubmitError('')
+        setParams(consultation ? { type: 'consultation' } : {}, { replace: true })
+    }
 
     const requestId = useRef('')
     const [website, setWebsite] = useState('')
@@ -24,7 +36,7 @@ const Contact = () => {
         setSubmitError('')
         try {
             if (!requestId.current) requestId.current = crypto.randomUUID()
-            const response = await fetch('/.netlify/functions/contact', {
+            const response = await fetch(consult ? '/.netlify/functions/consultation' : '/.netlify/functions/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...formData, website, requestId: requestId.current }),
@@ -64,9 +76,15 @@ const Contact = () => {
                     <div className="contact-grid">
                         <div className="contact-form-container">
                             <div className="card-glass">
-                                <h2>Let's Talk About You</h2>
+                                <div role="group" aria-label="What would you like to do?" style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                                    <button type="button" aria-pressed={!consult} onClick={() => choose(false)} className={'btn ' + (consult ? 'btn-secondary' : 'btn-primary')} style={{ flex: 1 }}>Send a message</button>
+                                    <button type="button" aria-pressed={consult} onClick={() => choose(true)} className={'btn ' + (consult ? 'btn-primary' : 'btn-secondary')} style={{ flex: 1 }}>Book a consultation</button>
+                                </div>
+                                <h2>{consult ? 'Request Your Consultation' : "Let's Talk About You"}</h2>
                                 <p className="form-intro">
-                                    Tell us about your goals or ask us anything about training. You'll get thoughtful guidance without pressure to sign up.
+                                    {consult
+                                        ? "Tell us when works for you. We'll contact you to arrange your consultation; your appointment is not confirmed until we reach you."
+                                        : "Tell us about your goals or ask us anything about training. You'll get thoughtful guidance without pressure to sign up."}
                                 </p>
 
                                 <p className="form-intro">
@@ -81,7 +99,7 @@ const Contact = () => {
                                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                         </svg>
-                                        <span>Thank you! Your message was sent. We look forward to talking with you.</span>
+                                        <span>{consult ? "Thank you! Your request was sent. We'll contact you to arrange a time." : 'Thank you! Your message was sent. We look forward to talking with you.'}</span>
                                     </div>
                                 )}
 
@@ -119,25 +137,41 @@ const Contact = () => {
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="phone" className="form-label">Phone</label>
+                                        <label htmlFor="phone" className="form-label">Phone{consult ? ' *' : ''}</label>
                                         <input
                                             type="tel"
                                             id="phone"
                                             name="phone"
                                             maxLength={50}
                                             className="form-input"
+                                            required={consult}
                                             value={formData.phone}
                                             onChange={handleChange}
                                         />
                                     </div>
 
+                                    {consult ? (
+                                        <div className="form-row">
+                                            <div className="form-group">
+                                                <label htmlFor="date" className="form-label">Preferred Date</label>
+                                                <input type="date" id="date" name="date" className="form-input" value={formData.date} onChange={handleChange} min={new Date().toISOString().split('T')[0]} />
+                                            </div>
+                                            <div className="form-group">
+                                                <label htmlFor="time" className="form-label">Preferred Time</label>
+                                                <select id="time" name="time" className="form-select" value={formData.time} onChange={handleChange}>
+                                                    <option value="">Any time</option>
+                                                    {timeSlots.map(slot => <option key={slot} value={slot}>{slot}</option>)}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    ) : (
                                     <div className="form-group">
                                         <label htmlFor="subject" className="form-label">Subject *</label>
                                         <select
                                             id="subject"
                                             name="subject"
                                             className="form-select"
-                                            required
+                                            required={!consult}
                                             value={formData.subject}
                                             onChange={handleChange}
                                         >
@@ -150,6 +184,8 @@ const Contact = () => {
                                         </select>
                                     </div>
 
+                                    )}
+
                                     <div className="form-group">
                                         <label htmlFor="message" className="form-label">Message *</label>
                                         <textarea
@@ -157,7 +193,7 @@ const Contact = () => {
                                             name="message"
                                             maxLength={5000}
                                             className="form-textarea"
-                                            required
+                                            required={!consult}
                                             placeholder="What would you like help with? Tell us about your goals, experience, or questions."
                                             value={formData.message}
                                             onChange={handleChange}
@@ -165,7 +201,7 @@ const Contact = () => {
                                     </div>
 
                                     <button type="submit" disabled={isSending} className="btn btn-primary btn-full btn-lg">
-                                        {isSending ? 'Sending…' : 'Send Message'}
+                                        {isSending ? 'Sending…' : consult ? 'Request Consultation' : 'Send Message'}
                                     </button>
                                 </form>
                             </div>

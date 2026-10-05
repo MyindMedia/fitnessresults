@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { CartProvider } from './context/CartContext'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -8,7 +8,6 @@ import Home from './pages/Home'
 import Memberships from './pages/Memberships'
 import Coaches from './pages/Coaches'
 import GroupClasses from './pages/GroupClasses'
-import ScheduleVisit from './pages/ScheduleVisit'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
 import Product from './pages/Product'
@@ -41,7 +40,7 @@ function App() {
                         <Route path="/memberships" element={<Memberships />} />
                         <Route path="/coaches" element={<Coaches />} />
                         <Route path="/group-classes" element={<GroupClasses />} />
-                        <Route path="/schedule-visit" element={<ScheduleVisit />} />
+                        <Route path="/schedule-visit" element={<Navigate to="/contact?type=consultation" replace />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/store" element={<Store />} />
                         <Route path="/store/:productId" element={<Product />} />

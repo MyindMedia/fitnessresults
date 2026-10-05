@@ -56,3 +56,27 @@ export function renderContactText(data: ContactMessage) {
         'Reply directly to this email to reach the visitor.', '',
         'Safe. Effective. Efficient.', '8920 Vernon Ave., Suite #120, Montclair, CA 91763'].join('\n')
 }
+
+export interface ConsultationMessage extends ContactMessage {
+    date: string
+    time: string
+    wellnessLiving: string
+}
+export function renderConsultationEmail(data: ConsultationMessage) {
+    const base = renderContactEmail({ ...data, subject: 'general' })
+    const when = escapeHtml([data.date, data.time].filter(Boolean).join(' at ') || 'No preference')
+    const status = escapeHtml(data.wellnessLiving)
+    return base
+        .replace('WEBSITE CONTACT MESSAGE', 'CONSULTATION REQUEST')
+        .replace('A new conversation starts here.', 'A consultation request is in.')
+        .replace(/<tr><td style="padding:0 0 24px"><p style="margin:0 0 6px;font-size:11px;letter-spacing:1px;color:#60717b;font-weight:bold">INTEREST<\/p>.*?<\/tr>/,
+            '<tr><td style="padding:0 0 18px"><p style="margin:0 0 6px;font-size:11px;letter-spacing:1px;color:#60717b;font-weight:bold">PREFERRED TIME</p><p style="margin:0;font-size:15px;color:#172c38">' + when + '</p></td></tr>' +
+            '<tr><td style="padding:0 0 24px"><p style="margin:0 0 6px;font-size:11px;letter-spacing:1px;color:#60717b;font-weight:bold">WELLNESSLIVING</p><p style="margin:0;font-size:15px;color:#172c38">' + status + '</p></td></tr>')
+}
+export function renderConsultationText(data: ConsultationMessage) {
+    return ['FITNESS RESULTS — CONSULTATION REQUEST', '', 'Name: ' + data.name,
+        'Email: ' + data.email, 'Phone: ' + data.phone,
+        'Preferred time: ' + ([data.date, data.time].filter(Boolean).join(' at ') || 'No preference'),
+        'WellnessLiving: ' + data.wellnessLiving, '', 'Message:', data.message || '(none)', '',
+        'Reply directly to this email to reach the visitor.'].join('\n')
+}
