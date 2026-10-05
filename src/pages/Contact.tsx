@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './Contact.css'
 
 const Contact = () => {
@@ -10,6 +10,8 @@ const Contact = () => {
         message: '',
     })
 
+    const requestId = useRef('')
+    const [website, setWebsite] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [isSending, setIsSending] = useState(false)
     const [submitError, setSubmitError] = useState('')
@@ -21,12 +23,14 @@ const Contact = () => {
         setSubmitted(false)
         setSubmitError('')
         try {
-            const response = await fetch('/', {
+            if (!requestId.current) requestId.current = crypto.randomUUID()
+            const response = await fetch('/.netlify/functions/contact', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({ 'form-name': 'contact', ...formData }).toString(),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ...formData, website, requestId: requestId.current }),
             })
-            if (!response.ok) throw new Error('Submission failed')
+            const result = await response.json().catch(() => null)
+            if (!response.ok || !result?.success) throw new Error('Submission failed')
             setSubmitted(true)
         } catch {
             setSubmitError("Your request could not be sent. Please call (909) 608-1780 or email fitnessresultsactive@gmail.com.")
@@ -36,6 +40,8 @@ const Contact = () => {
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        requestId.current = ''
+        setSubmitted(false)
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
@@ -80,8 +86,8 @@ const Contact = () => {
                                 )}
 
                                 {submitError && <p role="alert">{submitError}</p>}
-                                <form name="contact" method="POST" data-netlify="true" onSubmit={handleSubmit} className="contact-form">
-                                    <input type="hidden" name="form-name" value="contact" />
+                                <form name="contact" method="POST" onSubmit={handleSubmit} className="contact-form">
+                                    <div hidden aria-hidden="true"><label htmlFor="contact-website">Leave this empty</label><input id="contact-website" name="website" value={website} onChange={e => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" /></div>
                                     <div className="form-row">
                                         <div className="form-group">
                                             <label htmlFor="name" className="form-label">Name *</label>
@@ -89,6 +95,7 @@ const Contact = () => {
                                                 type="text"
                                                 id="name"
                                                 name="name"
+                                                maxLength={120}
                                                 className="form-input"
                                                 required
                                                 value={formData.name}
@@ -102,6 +109,7 @@ const Contact = () => {
                                                 type="email"
                                                 id="email"
                                                 name="email"
+                                                maxLength={254}
                                                 className="form-input"
                                                 required
                                                 value={formData.email}
@@ -116,6 +124,7 @@ const Contact = () => {
                                             type="tel"
                                             id="phone"
                                             name="phone"
+                                            maxLength={50}
                                             className="form-input"
                                             value={formData.phone}
                                             onChange={handleChange}
@@ -146,6 +155,7 @@ const Contact = () => {
                                         <textarea
                                             id="message"
                                             name="message"
+                                            maxLength={5000}
                                             className="form-textarea"
                                             required
                                             placeholder="What would you like help with? Tell us about your goals, experience, or questions."
@@ -155,7 +165,7 @@ const Contact = () => {
                                     </div>
 
                                     <button type="submit" disabled={isSending} className="btn btn-primary btn-full btn-lg">
-                                        Send Message
+                                        {isSending ? 'Sending…' : 'Send Message'}
                                     </button>
                                 </form>
                             </div>
