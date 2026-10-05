@@ -15,6 +15,7 @@ export const handler: Handler = async (event) => {
     }
 
     try {
+        // Read the credential from the function environment configured for this deployment.
         const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
         if (!stripeSecretKey) {
             return {
