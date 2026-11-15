@@ -113,3 +113,29 @@
         grid-template-columns: 1fr;
     }
 }
+.contact-card .contact-consultation-phone {
+    color: #075c75;
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+}
+
+.contact-member-photo {
+    margin: 0;
+    overflow: hidden;
+    background: #eef6f8;
+    border-radius: var(--radius-xl);
+}
+
+.contact-member-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.contact-member-photo figcaption {
+    padding: var(--space-sm);
+    color: #173d49;
+    font-weight: 600;
+}

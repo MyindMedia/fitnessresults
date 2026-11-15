@@ -90,7 +90,7 @@ const Memberships = () => {
                         </div>
 
                         <div className="program-card card-glass">
-                            <img className="program-photo" src="/images/partner-training.webp" alt="A trainer guiding an older adult through a cable exercise" loading="lazy" width="730" height="730" />
+                            <img className="program-photo" src="/images/gym/senior-training.webp" alt="An older adult strength training at Fitness Results" loading="lazy" width="1024" height="683" />
                             <div className="program-content">
                             <h3>Senior Fitness</h3>
                             <p>
@@ -110,6 +110,30 @@ const Memberships = () => {
                             </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="section training-specialties" aria-labelledby="training-specialties-heading">
+                <div className="container">
+                    <h2 id="training-specialties-heading">Specialized Training & Assessments</h2>
+                    <div className="training-specialties-grid">
+                        <article className="card-glass training-specialty">
+                            <img src="/images/gym/functional-patterns.webp" alt="Kevin Guardado coaching a client during a Functional Patterns session" loading="lazy" width="1024" height="683" />
+                            <div>
+                                <h3>Functional Patterns</h3>
+                                <p>Work one-on-one with Kevin Guardado to explore how you move and practice exercises guided by your movement assessment and goals.</p>
+                                <Link to="/coaches#kevin-guardado" className="program-contact">Meet Kevin →</Link>
+                            </div>
+                        </article>
+                        <article className="card-glass training-specialty">
+                            <img src="/images/gym/styku-body-scan.webp" alt="A Fitness Results team member demonstrating the Styku body scanner" loading="lazy" width="1024" height="683" />
+                            <div>
+                                <h3>Styku 3D Body Scan</h3>
+                                <p>Get a visual baseline and track changes in your body measurements over time. Ask our team how a Styku scan can fit into your training plan.</p>
+                                <Link to="/contact" className="program-contact">Ask About a Body Scan →</Link>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>

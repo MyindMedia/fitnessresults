@@ -57,3 +57,11 @@
   .classes-hero-actions { flex-direction: column; }
   .group-classes .btn { white-space: normal; text-align: center; }
 }
+
+.classes-yoga-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}

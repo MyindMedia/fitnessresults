@@ -178,3 +178,41 @@
     .memberships .program-actions .btn { flex: none; width: 100%; }
     .memberships .program-contact { justify-content: center; }
 }
+
+.training-specialties {
+    background: #eef6f8;
+}
+
+.training-specialties h2 {
+    margin-bottom: var(--space-lg);
+}
+
+.training-specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg);
+}
+
+.training-specialty {
+    overflow: hidden;
+    padding: 0;
+    background: white;
+}
+
+.training-specialty img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+}
+
+.training-specialty > div {
+    padding: var(--space-md);
+}
+
+@media (max-width: 700px) {
+    .training-specialties-grid {
+        grid-template-columns: 1fr;
+    }
+}

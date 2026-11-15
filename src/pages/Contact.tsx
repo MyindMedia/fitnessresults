@@ -1,3 +1,4 @@
+import { businessPhone, businessPhoneHref } from '../config/contact'
 import { useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import './Contact.css'
@@ -228,8 +229,8 @@ const Contact = () => {
                                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                                     </svg>
                                 </div>
-                                <h3>Call Us</h3>
-                                <p><a href="tel:9096081780">(909) 608-1780</a></p>
+                                <h3>Call for a Free Consultation</h3>
+                                <p><a className="contact-consultation-phone" href={businessPhoneHref}>{businessPhone}</a></p>
                                 <p className="hours-text">Mon-Fri: 5 AM - 9 PM<br />Sat: 8 AM - 4 PM</p>
                             </div>
 
@@ -244,6 +245,11 @@ const Contact = () => {
                                 <p><a href="mailto:fitnessresultsactive@gmail.com">fitnessresultsactive@gmail.com</a></p>
                                 <p className="response-text">Prefer a conversation? Give us a call.</p>
                             </div>
+
+                            <figure className="contact-member-photo">
+                                <img src="/images/gym/member-support.webp" alt="Kamryn Long at the Fitness Results front desk" loading="lazy" width="1024" height="675" />
+                                <figcaption>Kamryn Long · Member Experience Coordinator (M.E.C.)</figcaption>
+                            </figure>
 
                             <div className="contact-card card-glass">
                                 <h3>Follow Us</h3>

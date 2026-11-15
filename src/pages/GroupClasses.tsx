@@ -26,7 +26,7 @@ const GroupClasses = () => (
           </div>
           <p className="classes-promise"><strong>NO CONTRACTS. EVER.</strong> A welcoming gym. A choice that stays yours.</p>
         </div>
-        <img src="/images/group-classes-memberships.jpg" alt="Fitness Results members working out together with resistance bands and dumbbells" width="1280" height="1920" className="classes-hero-photo" />
+        <img src="/images/gym/yoga-class.webp" alt="Members practicing seated yoga together at Fitness Results" width="1024" height="683" className="classes-hero-photo" />
       </div>
     </section>
 
@@ -70,6 +70,9 @@ const GroupClasses = () => (
               <p className="classes-card-focus">{item.focus}</p>
               <h3>{item.name}</h3>
               <p className="classes-card-description">{item.description}</p>
+              {item.id === 'yoga' && (
+                <img className="classes-yoga-photo" src="/images/gym/yoga-practice.webp" alt="Members following a guided stretch in yoga class" loading="lazy" width="1024" height="683" />
+              )}
               <dl className="classes-card-meta">
                 <div><dt>Instructor</dt><dd>{item.coach}</dd></div>
                 <div><dt>Weekly sessions</dt><dd>{item.sessions.map(session => <span key={session.day}>{session.day} · {session.time}</span>)}</dd></div>

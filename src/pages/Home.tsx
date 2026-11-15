@@ -42,7 +42,7 @@ const Home = () => {
                     <div className="services-grid">
                         <div className="service-circle-card animate-slide-up">
                             <div className="circle-image">
-                                <img src="/images/personal-training.webp" alt="Personal Training" />
+                                <img src="/images/gym/personal-training.webp" alt="A Fitness Results trainer coaching a client at the cable machine" loading="lazy" />
                             </div>
                             <h3>Personal Training</h3>
                             <p>
@@ -169,6 +169,10 @@ const Home = () => {
                         <div className="card-glass"><h3>We Listen First</h3><p>Tell us what you want to achieve, what feels challenging, and what you need from a coach. Your plan starts with understanding you.</p></div>
                         <div className="card-glass"><h3>We Train With Purpose</h3><p>Science-informed exercise selection, clear instruction, and sensible progression help you make the most of your time with us.</p></div>
                         <div className="card-glass"><h3>We Earn Your Next Visit</h3><p><strong>NO CONTRACTS. EVER.</strong> Our clients stay because the training works for them, they feel supported, and they enjoy being here.</p></div>
+                    </div>
+                    <div className="home-gym-photos">
+                        <img src="/images/gym/dumbbell-rack.webp" alt="Dumbbells in the Fitness Results strength training area" loading="lazy" />
+                        <img src="/images/gym/cardio-area.webp" alt="A member using a treadmill at Fitness Results" loading="lazy" />
                     </div>
                 </div>
             </section>

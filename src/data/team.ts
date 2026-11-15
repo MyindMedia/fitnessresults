@@ -30,7 +30,7 @@ export const teamMembers: TeamMember[] = [
       "training",
       "care"
     ],
-    "photo": null,
+    "photo": "/images/team/asa-bernstine.webp",
     "video": null
   },
   {
@@ -48,7 +48,7 @@ export const teamMembers: TeamMember[] = [
     "groups": [
       "training"
     ],
-    "photo": null,
+    "photo": "/images/team/kevin-guardado.webp",
     "video": null
   },
   {
@@ -70,7 +70,7 @@ export const teamMembers: TeamMember[] = [
       "training",
       "classes"
     ],
-    "photo": null,
+    "photo": "/images/team/reyna.webp",
     "video": null
   },
   {
@@ -94,7 +94,7 @@ export const teamMembers: TeamMember[] = [
       "training",
       "classes"
     ],
-    "photo": null,
+    "photo": "/images/team/gisel-juarez.webp",
     "video": null
   },
   {
@@ -116,7 +116,20 @@ export const teamMembers: TeamMember[] = [
       "classes",
       "care"
     ],
-    "photo": null,
+    "photo": "/images/team/kamryn-long.webp",
+    "video": null
+  },
+  {
+    "id": "heidi",
+    "name": "Heidi",
+    "role": "Fitness Results Team Member",
+    "initials": "H",
+    "tags": ["Member support"],
+    "credential": null,
+    "bio": "Heidi is part of the team that welcomes members and helps make Fitness Results a supportive place to train.",
+    "classIds": [],
+    "groups": ["care"],
+    "photo": "/images/team/heidi.webp",
     "video": null
   },
   {
