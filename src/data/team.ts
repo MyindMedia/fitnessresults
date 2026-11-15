@@ -112,13 +112,13 @@ export const teamMembers: TeamMember[] = [
   {
     "id": "heidi",
     "name": "Heidi",
-    "role": "Fitness Results Team Member",
+    "role": "Personal Trainer",
     "initials": "H",
-    "tags": ["Member support"],
+    "tags": ["Personal training", "Group training", "Clients of all ages"],
     "credential": null,
-    "bio": "Heidi is part of the team that welcomes members and helps make Fitness Results a supportive place to train.",
+    "bio": "Heidi specializes in one-on-one personal training and group training for clients of all ages. She has helped clients reach their fitness goals by adapting exercises to their abilities, coaching proper form, and making each session safe, effective, and efficient.",
     "classIds": [],
-    "groups": ["care"],
+    "groups": ["training"],
     "photo": "/images/team/heidi.webp",
     "video": null
   },
