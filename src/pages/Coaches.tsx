@@ -25,7 +25,7 @@ const Coaches = () => {
             <p className="coaches-intro">Professional guidance. Personal attention. People who care. Get to know the coaches and team members who help make our gym a place you can feel at home.</p>
             <Link to="/schedule-visit" className="btn btn-primary">Find Your Starting Point</Link>
           </div>
-          <img className="coaches-team-photo" src="/images/coaching-team.jpg" alt="The Fitness Results team smiling together in the gym" width="1920" height="1280" />
+          <img className="coaches-team-photo" src="/images/team/fitness-results-group.webp" alt="Six Fitness Results team members in matching black shirts" width="1600" height="740" />
         </div>
       </section>
 
