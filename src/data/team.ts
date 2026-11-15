@@ -100,15 +100,15 @@ export const teamMembers: TeamMember[] = [
   {
     "id": "kamryn-long",
     "name": "Kamryn Long",
-    "role": "Member Experience Coordinator · Step Instructor",
+    "role": "Member Experience Coordinator (M.E.C.) · Step Instructor",
     "initials": "KL",
     "tags": [
-      "Member experience",
-      "Community",
+      "Member check-ins",
+      "Community events",
       "Step"
     ],
     "credential": null,
-    "bio": "Kamryn helps make Fitness Results feel like home. As Member Experience Coordinator, she brings care to the details that help members feel welcomed and connected. She also leads Step, adding another way for members to enjoy movement and community.",
+    "bio": "Kamryn helps members feel at home from their first visit. She organizes community events, checks in with members, and helps them get the answers and support they need throughout their time at the gym. She also teaches Step.",
     "classIds": [
       "step"
     ],
