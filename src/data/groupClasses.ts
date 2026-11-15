@@ -47,19 +47,6 @@ export const groupClasses = [
     ]
   },
   {
-    "id": "zumba",
-    "name": "Zumba",
-    "focus": "Dance & movement",
-    "coach": "Gisel",
-    "description": "Enjoy movement with music and the encouragement of a group. Make your workout something to look forward to, and ask your instructor how to approach your first class.",
-    "sessions": [
-      {
-        "day": "Wednesday",
-        "time": "4–5 PM"
-      }
-    ]
-  },
-  {
     "id": "cardio-meditation",
     "name": "Cardio Meditation",
     "focus": "Movement & focus",
@@ -94,32 +81,6 @@ export const groupClasses = [
       {
         "day": "Thursday",
         "time": "8:30–9:30 AM"
-      }
-    ]
-  },
-  {
-    "id": "stretching-mobility",
-    "name": "Stretching & Mobility",
-    "focus": "Move with confidence",
-    "coach": "Gisel",
-    "description": "Give your body dedicated time for stretching and mobility work. Share your movement goals with your instructor and explore a class focused on moving with greater ease.",
-    "sessions": [
-      {
-        "day": "Friday",
-        "time": "7–8 AM"
-      }
-    ]
-  },
-  {
-    "id": "step",
-    "name": "Step",
-    "focus": "Rhythm & movement",
-    "coach": "Kamryn",
-    "description": "Add a step-based workout to your week in a supportive group setting. Check in with Kameryn about the class format, pacing, and what you need for your first visit.",
-    "sessions": [
-      {
-        "day": "Friday",
-        "time": "9–10 AM"
       }
     ]
   },

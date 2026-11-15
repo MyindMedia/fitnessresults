@@ -76,23 +76,17 @@ export const teamMembers: TeamMember[] = [
   {
     "id": "gisel-juarez",
     "name": "Gisel Juarez",
-    "role": "Certified Personal Trainer · Group Class Instructor",
+    "role": "Certified Personal Trainer",
     "initials": "GJ",
     "tags": [
       "Personal training",
-      "Small group training",
-      "Zumba",
-      "Stretching & Mobility"
+      "Small group training"
     ],
     "credential": "Certified Personal Trainer",
-    "bio": "Gisel works with clients through personal training, small group training, and group classes. Whether she is leading Zumba or Stretching & Mobility, her role is to guide members through movement and help them find a way to train that feels engaging and supportive.",
-    "classIds": [
-      "zumba",
-      "stretching-mobility"
-    ],
+    "bio": "Gisel coaches personal training and small group training, helping members build a routine that fits their goals and experience.",
+    "classIds": [],
     "groups": [
-      "training",
-      "classes"
+      "training"
     ],
     "photo": "/images/team/gisel-juarez.webp",
     "video": null
@@ -100,20 +94,16 @@ export const teamMembers: TeamMember[] = [
   {
     "id": "kamryn-long",
     "name": "Kamryn Long",
-    "role": "Member Experience Coordinator (M.E.C.) · Step Instructor",
+    "role": "Member Experience Coordinator (M.E.C.)",
     "initials": "KL",
     "tags": [
       "Member check-ins",
-      "Community events",
-      "Step"
+      "Community events"
     ],
     "credential": null,
-    "bio": "Kamryn helps members feel at home from their first visit. She organizes community events, checks in with members, and helps them get the answers and support they need throughout their time at the gym. She also teaches Step.",
-    "classIds": [
-      "step"
-    ],
+    "bio": "Kamryn helps members feel at home from their first visit. She organizes community events, checks in with members, and helps them get the answers and support they need throughout their time at the gym.",
+    "classIds": [],
     "groups": [
-      "classes",
       "care"
     ],
     "photo": "/images/team/kamryn-long.webp",
@@ -209,7 +199,7 @@ export const teamMembers: TeamMember[] = [
     "groups": [
       "care"
     ],
-    "photo": null,
+    "photo": "/images/team/john-herr.webp",
     "video": null
   }
 ]

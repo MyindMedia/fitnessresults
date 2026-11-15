@@ -42,7 +42,7 @@ const Home = () => {
                     <div className="services-grid">
                         <div className="service-circle-card animate-slide-up">
                             <div className="circle-image">
-                                <img src="/images/gym/personal-training.webp" alt="A Fitness Results trainer coaching a client at the cable machine" loading="lazy" />
+                                <img src="/images/personal-training.webp" alt="Personal training at Fitness Results" loading="lazy" />
                             </div>
                             <h3>Personal Training</h3>
                             <p>
