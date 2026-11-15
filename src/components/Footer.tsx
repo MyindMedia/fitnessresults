@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { businessStreetAddress, businessCityAddress, businessPhone, businessPhoneHref, businessDirectionsHref } from '../config/contact'
 import './Footer.css'
 
 const Footer = () => {
@@ -51,9 +52,10 @@ const Footer = () => {
                     <div className="footer-section">
                         <h4 className="footer-heading">Contact Info</h4>
                         <div className="contact-info">
-                            <p>8920 Vernon Ave., Suite #120</p>
-                            <p>Montclair, CA 91763</p>
-                            <a href="tel:9096081780" className="footer-link">(909) 608-1780</a>
+                            <a href={businessDirectionsHref} className="footer-link footer-contact-link">
+                                {businessStreetAddress}<br />{businessCityAddress}
+                            </a>
+                            <a href={businessPhoneHref} className="footer-link footer-contact-link">{businessPhone}</a>
                             <a href="mailto:fitnessresultsactive@gmail.com" className="footer-link">
                                 fitnessresultsactive@gmail.com
                             </a>

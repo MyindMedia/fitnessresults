@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { businessStreetAddress, businessCityAddress, businessPhone, businessPhoneHref, businessDirectionsHref } from '../config/contact'
 import './Header.css'
 
 const Header = () => {
@@ -33,6 +34,17 @@ const Header = () => {
 
     return (
         <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
+            <div className="header-contact">
+                <div className="container header-contact-content">
+                    <a href={businessDirectionsHref} className="header-address">
+                        <span>{businessStreetAddress}</span>
+                        <span>{businessCityAddress}</span>
+                    </a>
+                    <a href={businessPhoneHref} className="header-phone">
+                        {businessPhone}
+                    </a>
+                </div>
+            </div>
             <div className="container header-content">
                 <Link to="/" className="logo">
                     <img src="/images/logo.png" alt="Fitness Results" className="logo-image" />
@@ -72,6 +84,7 @@ const Header = () => {
                         className="mobile-menu-toggle"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
+                        aria-expanded={isMobileMenuOpen}
                     >
                         <span></span>
                         <span></span>

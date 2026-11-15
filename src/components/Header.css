@@ -144,8 +144,11 @@
 
 @media (max-width: 1200px) {
     .nav {
-        position: fixed;
-        top: 70px;
+        position: absolute;
+        top: 100%;
+        max-height: calc(100dvh - 100%);
+        overflow-y: auto;
+        visibility: hidden;
         left: 0;
         right: 0;
         flex-direction: column;
@@ -159,6 +162,7 @@
     }
 
     .nav.open {
+        visibility: visible;
         transform: translateX(0);
     }
 
@@ -168,11 +172,89 @@
         padding: var(--space-sm) 0;
     }
 
+    .header .header-content {
+        padding-block: 0.875rem;
+    }
+
     .mobile-menu-toggle {
         display: flex;
     }
 
     .header-actions .btn {
         display: none;
+    }
+}
+
+:root {
+    --header-contact-height: 3.5rem;
+    scroll-padding-top: var(--header-contact-height);
+}
+
+.app > main {
+    padding-top: var(--header-contact-height);
+}
+
+.header-contact {
+    background: #173d49;
+    color: white;
+}
+
+.header-contact-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    min-height: var(--header-contact-height);
+}
+
+.header-contact a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    color: inherit;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.header-contact a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.header-address {
+    gap: 0.35em;
+}
+
+.header-address span:first-child::after {
+    content: ',';
+}
+
+.header-phone {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .header .header-contact-content {
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-inline: 1rem;
+    }
+
+    .header-contact a {
+        font-size: 0.875rem;
+    }
+
+    .header-contact .header-address {
+        display: grid;
+        align-content: center;
+        gap: 0.15rem;
+    }
+
+    .header-address span:first-child::after {
+        content: none;
     }
 }
