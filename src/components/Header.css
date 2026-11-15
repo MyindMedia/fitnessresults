@@ -186,7 +186,7 @@
 }
 
 :root {
-    --header-contact-height: 3.5rem;
+    --header-contact-height: 4.25rem;
     scroll-padding-top: var(--header-contact-height);
 }
 
@@ -195,8 +195,8 @@
 }
 
 .header-contact {
-    background: #173d49;
-    color: white;
+    background: #eef6f8;
+    color: #173d49;
 }
 
 .header-contact-content {
@@ -220,7 +220,7 @@
 }
 
 .header-contact a:focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid #173d49;
     outline-offset: 2px;
 }
 
@@ -233,7 +233,29 @@
 }
 
 .header-phone {
-    flex-shrink: 0;
+    background: #075c75;
+    border-radius: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.125rem;
+    padding: 0.35rem 1rem;
+    text-align: center;
+}
+
+.header-contact .header-phone {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header-contact .header-phone:hover {
+    background: #124354;
+}
+
+.header-phone strong {
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
     white-space: nowrap;
 }
 
@@ -241,11 +263,21 @@
     .header .header-contact-content {
         justify-content: space-between;
         gap: 0.75rem;
-        padding-inline: 1rem;
+        padding-inline: 0.75rem;
     }
 
     .header-contact a {
         font-size: 0.875rem;
+    }
+
+    .header-contact .header-phone {
+        flex: 0 0 49%;
+        padding-inline: 0.35rem;
+        font-size: 0.75rem;
+    }
+
+    .header-phone strong {
+        font-size: 1.0625rem;
     }
 
     .header-contact .header-address {

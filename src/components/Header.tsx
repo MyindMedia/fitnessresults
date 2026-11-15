@@ -41,7 +41,8 @@ const Header = () => {
                         <span>{businessCityAddress}</span>
                     </a>
                     <a href={businessPhoneHref} className="header-phone">
-                        {businessPhone}
+                        <span>Call for a free consultation!</span>
+                        <strong>{businessPhone}</strong>
                     </a>
                 </div>
             </div>
